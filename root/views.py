@@ -40,7 +40,7 @@ def index(request):
             brands = get_object_or_404(FrontDisplayCategory, category_name="Brands").displays.all()
     return render(
         request,
-        "index.html",
+        "index-1.html",
         {
             "categories": categories,
             "featured": featured,
