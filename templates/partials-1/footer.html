@@ -12,13 +12,13 @@
                         <h5 class="widget-title align-left text-uppercase font-weight-bold mb-1"
                           style="letter-spacing: .075em;color:#22232D;font-size:14px;line-height: 20px;">Subscribe
                           newsletter</h5>
-                        <p class="mb-md-0" style="margin-top: 0;line-height: 22px;letter-spacing: 0;">Get all the
-                          latest information on Events, Sales and Offers.</p>
+                        <p class="mb-md-0" style="margin-top: 0;line-height: 22px;letter-spacing: 0;">Stay up to date with our latest products, promotions, and events by subscribing to our newsletter.</p>
                       </div>
                       <div class="block newsletter">
                         <div class="content">
                           <form class="form subscribe"
-                            action="" method="post" id="newsletter-validate-detail">
+                            action="{% url 'root:subscribe' %}" method="post" id="newsletter-validate-detail">
+                            {% csrf_token %}
                             <div class="field newsletter">
                               <label class="label" for="footer_newsletter"><span>Sign Up for Our Newsletter:</span></label>
                               <div class="control">
@@ -38,13 +38,21 @@
                     </div>
                   </div>
                 </div>
+                {% if contact_info.twitter_handle or contact_info.facebook or contact_info.linked_in or contact_info.instagram %}
                 <div class="widget follow-us">
                   <div class="share-links">
-                    <a href="#" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
-                    <a href="#" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
-                    <a href="#" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
+                    {% if contact_info.facebook %}
+                    <a href="{{contact_info.facebook}}" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
+                    {% endif %}
+                    {% if contact_info.twitter_handle %}
+                    <a href="{{contact_info.twitter_handle}}" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
+                    {% endif %}
+                    {% if contact_info.instagram %}
+                    <a href="{{contact_info.instagram}}" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
+                    {% endif %}
                   </div>
                 </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -58,25 +66,38 @@
                 <h3 class="widget-title">CONTACT INFO</h3>
                 <div class="contact-info contact-info-block">
                   <ul class="contact-details">
-                    <li><i class="far fa-dot-circle"></i> <strong>ADDRESS:</strong> <span>123 Street Name, City,
-                        England</span></li>
-                    <li><i class="fab fa-whatsapp"></i> <strong>PHONE:</strong> <span>(123) 456-7890</span></li>
-                    <li>
-                      <i class="far fa-envelope"></i> <strong>EMAIL:</strong> <span><a
-                          href="mailto:mail@example.com">mail@example.com</a></span>
-                    </li>
+                    {% if contact_info.getAddress %}
+                    <li><i class="far fa-dot-circle"></i> <strong>ADDRESS:</strong> <span>{{contact_info.getAddress}}</span></li>
+                    {% endif %}
+                    {% if contact_info.phone_number %}
+                        <li><i class="fab fa-whatsapp"></i> <strong>PHONE:</strong> <span>{{contact_info.phone_number}}</span></li>
+                    {% endif %}
+                    {% if contact_info.email %}
+                        <li>
+                        <i class="far fa-envelope"></i> <strong>EMAIL:</strong> <span><a
+                            href="mailto:mail@example.com">{{contact_info.email}}</a></span>
+                        </li>
+                    {% endif %}
                     <li><i class="far fa-clock"></i> <strong>WORKING DAYS/HOURS:</strong> <span>Mon - Sun / 9:00 AM -
                         8:00 PM</span></li>
                   </ul>
                 </div>
               </div>
-              <div class="widget follow-us">
-                <div class="share-links">
-                  <a href="#" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
-                  <a href="#" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
-                  <a href="#" target="_blank" title="Linkedin" class="share-linkedin">Linkedin</a>
+              {% if contact_info.twitter_handle or contact_info.facebook or contact_info.linked_in or contact_info.instagram %}
+                <div class="widget follow-us">
+                  <div class="share-links">
+                    {% if contact_info.facebook %}
+                    <a href="{{contact_info.facebook}}" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
+                    {% endif %}
+                    {% if contact_info.twitter_handle %}
+                    <a href="{{contact_info.twitter_handle}}" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
+                    {% endif %}
+                    {% if contact_info.instagram %}
+                    <a href="{{contact_info.instagram}}" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
+                    {% endif %}
+                  </div>
                 </div>
-              </div>
+                {% endif %}
             </div>
             <div class="col-lg-4">
               <div class="widget widget_text">
@@ -87,13 +108,13 @@
                       <ul>
                         <li><a href="{% url 'root:about' %}">About Us</a></li>
                         <li><a href="{% url 'root:contact' %}">Contact Us</a></li>
-                        <li><a href="#">My Account</a></li>
+                        <li><a href="{% url 'profile' %}">My Account</a></li>
                       </ul>
                     </div>
                     <div class="col-xl-6">
                       <ul>
-                        <li><a href="#">Orders History</a></li>
-                        <li><a href="#">Advanced Search</a></li>
+                        <li><a href="{% url 'order:order_history' %}">Orders History</a></li>
+                        <li><a href="{% url 'root:search' %}">Advanced Search</a></li>
                       </ul>
                     </div>
                   </div>
@@ -102,20 +123,19 @@
             </div>
             <div class="col-lg-4">
               <div class="widget widget_text">
-                <h3 class="widget-title">Main Features</h3>
+                <h3 class="widget-title">About Us.</h3>
                 <div class="textwidget">
                   <div class="row d-inline-flex">
                     <div class="col-xl-6">
-                      <ul>
-                        <li><a href="#">Super Fast WordPress Theme</a></li>
-                        <li><a href="#">1st Fully working Ajax Theme</a></li>
-                        <li><a href="#">36 Unique Shop Layouts</a></li>
+                      <ul><strong>Apple Masters, Inc.</strong><br>
+                        an online platform<br>
+                        for electronics sales.
                       </ul>
                     </div>
                     <div class="col-xl-6">
                       <ul>
-                        <li><a href="#">Powerful Admin Panel</a></li>
-                        <li><a href="#">Mobile &amp; Retina Optimized</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">Wishlist</a></li>
                       </ul>
                     </div>
                   </div>

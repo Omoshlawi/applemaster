@@ -97,4 +97,6 @@ def contact(request):
         }
     )
 
+def advanced_search(request):
+    pass
 
