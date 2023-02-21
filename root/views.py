@@ -49,7 +49,8 @@ def index(request):
             "sliders": sliders,
             "brands": brands,
             'tags': tags,
-            "bread_crumb": bread_crumb
+            "bread_crumb": bread_crumb,
+            'title': 'home',
         }
     )
 
@@ -72,7 +73,12 @@ def about(request):
         BreadCrumb("About", reverse('root:about'), True),
     ]
     nav = {"about": 'active'}
-    return render(request, "about.html", {'nav': nav, "bread_crumb": bread_crumb})
+    context= {
+        'nav': nav, 
+        "bread_crumb": bread_crumb,
+        'title': 'About Us',
+    }
+    return render(request, "about-1.html", context)
 
 
 def contact(request):
@@ -82,15 +88,13 @@ def contact(request):
     ]
     nav = {"contact": 'active'}
     form = ContactForm()
-    return render(request, "contact.html", {"form": form, 'nav': nav, "bread_crumb": bread_crumb})
+    return render(request, "contact-1.html", 
+        {
+            "form": form, 
+            'nav': nav, 
+            "bread_crumb": bread_crumb,
+            'title': 'Contact Us',
+        }
+    )
 
 
-@login_required
-def dashboard(request):
-    # TODO removed for now, to be implemented later
-    bread_crumb = [
-        BreadCrumb("Home", "/"),
-        BreadCrumb("Dashboard", reverse('root:dashboard'), True),
-    ]
-    nav = {"dashboard": "active"}
-    return render(request, "dashboard/dashboard.html", {'nav': nav, "bread_crumb": bread_crumb})

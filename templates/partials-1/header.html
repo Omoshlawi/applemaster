@@ -13,13 +13,16 @@
                 <ul class="header links">
                   <li class="greet welcome" data-bind="scope: 'customer'">
                     <!-- ko if: customer().fullname  -->
-                    <span class="logged-in"
-                      data-bind="text: new String('Welcome, %1!').replace('%1', customer().fullname)">
+                    {% if user.is_authenticated %}
+                    <span class="logged-in">
+                        Welcome!, {{ user.username }}
                     </span>
                     <!-- /ko -->
+                    {% else %}
                     <!-- ko ifnot: customer().fullname  -->
-                    <span class="not-logged-in" data-bind='html:"Default welcome msg!"'></span>
+                    <span class="not-logged-in">Welcome</span>
                     <!-- /ko -->
+                    {% endif %}
                   </li>
                   <script type="text/x-magento-init">
   {
@@ -50,7 +53,7 @@
                     <a href="customer/account/index.html">
                       Sign In </a>
                   </li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="{% url 'root:contact' %}">Contact Us</a></li>
                   <li><a href="customer/account/create/index.html">Create an Account</a></li>
                 </ul>
               </div>
@@ -111,7 +114,7 @@
                   <ul>
 
                     <li class="ui-menu-item level0 active">
-                      <a href="index.html" class="level-top">
+                      <a href="/" class="level-top">
                         <span>Home</span>
                       </a>
                     </li>
@@ -324,10 +327,10 @@
                         <div class="row">
                           <ul class="subchildmenu">
                             <li class="ui-menu-item level1">
-                              <a href="about-porto/index.html"><span>About Us</span></a>
+                              <a href="{% url 'root:about' %}"><span>About Us</span></a>
                             </li>
                             <li class="ui-menu-item level1">
-                              <a href="contact/index.html"><span>Contact Us</span></a>
+                              <a href="{% url 'root:contact' %}"><span>Contact Us</span></a>
                             </li>
                             <li class="ui-menu-item level1">
                               <a href="blog/index.html"><span>Blog</span></a>
