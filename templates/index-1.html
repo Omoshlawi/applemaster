@@ -6,12 +6,9 @@
 {% endblock %}
 {% block content %}
 <div class="columns">
-  <div class="column main"><input name="form_key" type="hidden" value="8v2D5XLyeXFUpEOb" />
-    <div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
-      <script>
-        window.authenticationPopup = { "autocomplete": "off", "customerRegisterUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/create\/", "customerForgotPasswordUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/forgotpassword\/", "baseUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/" };
-      </script>
-      <!-- ko template: getTemplate() --><!-- /ko -->
+  <div class="column main">
+    <div id="authenticationPopup">
+
       <script type="text/x-magento-init">
         {
             "#authenticationPopup": {
@@ -197,8 +194,7 @@
                       <h5 style="font-size: 2.25em; line-height: 1;"
                         class="vc_custom_heading coupon-sale-text mb-4 align-left"><sup>$</sup>199<sup>99</sup>
                       </h5>
-                      <div class="btn-container mb-0 mt-2 text-left"><button class="btn btn-modern btn-xl btn-dark">Shop
-                          Now</button></div>
+                      <div class="btn-container mb-0 mt-2 text-left"><button class="btn btn-modern btn-xl btn-dark">Shop Now</button></div>
                     </div>
                   </div>
                 </div>
@@ -383,41 +379,6 @@
               </a>
             </li>
           </ul>
-          <script type="text/javascript">
-            require([
-              'jquery',
-              'owl.carousel/owl.carousel.min'
-            ], function ($) {
-              $("#products-category").owlCarousel({
-                autoplay: false,
-                autoplayTimeout: 5000,
-                autoplayHoverPause: true,
-                loop: true,
-                navRewind: true,
-                lazyLoad: true,
-                margin: 0,
-                nav: false,
-                dots: true,
-                responsive: {
-                  0: {
-                    items: 2
-                  },
-                  640: {
-                    items: 3
-                  },
-                  768: {
-                    items: 3
-                  },
-                  992: {
-                    items: 4
-                  },
-                  1200: {
-                    items: 6
-                  }
-                }
-              });
-            });
-          </script>
         </div>
       </div>
     </div>
@@ -594,7 +555,7 @@
 
                     </div> <a class="weltpixel-quickview weltpixel_quickview_button_v2"
                       data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3382/
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
+                      href=""><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
                   </div>
                 </div>
               </li>
