@@ -114,5 +114,3 @@ def profile(request):
                    'profile_form': profile_form, 'bread_crumb': bread_crumb, 'image_form': image_form})
 
 
-def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')

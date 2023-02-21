@@ -48,7 +48,7 @@
                   <script type="text/x-magento-init">
 {"[data-role=compare-products-link]": {"Magento_Ui/js/core/app": {"components":{"compareProducts":{"component":"Magento_Catalog\/js\/view\/compare-products"}}}}}
 </script>
-                  <li><a href="blog/index.html">Blog</a></li>
+                  <li><a href="{% url 'blogs:index' %}">Blog</a></li>
                   <li class="authorization-link" data-label="or">
                     {% if user.is_authenticated %}
                     <a href="{% url 'profile' %}">Profile</a>
@@ -247,7 +247,7 @@
                               <a href="{% url 'root:contact' %}"><span>Contact Us</span></a>
                             </li>
                             <li class="ui-menu-item level1">
-                              <a href="blog/index.html"><span>Blog</span></a>
+                              <a href="{% url 'blogs:index' %}"><span>Blog</span></a>
                             </li>
                             <li class="ui-menu-item level1">
                               <a href="{% url 'cart:wish_detail' %}"><span>Wishlist({{cart_wish.length_wish}})</span></a>
@@ -266,7 +266,7 @@
                     </li>
                     <li class="ui-menu-item level0">
                       <div class="open-children-toggle"></div>
-                      <a href="blog/index.html" class="level-top"><span>Blog</span></a>
+                      <a href="{% url 'blogs:index' %}" class="level-top"><span>Blog</span></a>
                     </li>
                   </ul>
                   </ul>
