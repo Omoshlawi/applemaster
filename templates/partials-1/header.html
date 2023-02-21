@@ -50,11 +50,18 @@
 </script>
                   <li><a href="blog/index.html">Blog</a></li>
                   <li class="authorization-link" data-label="or">
-                    <a href="customer/account/index.html">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}">Profile</a>
+                    <a href="{% url 'sign_out' %}">Sign Out</a>
+                    {% else %}
+                    <a href="{% url 'sign_in' %}">
                       Sign In </a>
+                    {% endif %}
                   </li>
                   <li><a href="{% url 'root:contact' %}">Contact Us</a></li>
-                  <li><a href="customer/account/create/index.html">Create an Account</a></li>
+                  {% if not user.is_authenticated %}
+                    <li><a href="{% url 'sign_up' %}">Create an Account</a></li>
+                  {% endif %}
                 </ul>
               </div>
               <span class="separator"></span>
@@ -85,9 +92,15 @@
               </div>
               <span class="gap">|</span>
               <div class="share-links">
-                <a target="_blank" rel="nofollow" class="share-facebook" href="#" title="Facebook"></a>
-                <a target="_blank" rel="nofollow" class="share-twitter" href="#" title="Twitter"></a>
-                <a target="_blank" rel="nofollow" class="share-instagram" href="#" title="Instagram"></a>
+                {% if contact_info.facebook %}
+                <a href="{{contact_info.facebook}}" target="_blank" title="Facebook" class="share-facebook">Facebook</a>
+                {% endif %}
+                {% if contact_info.twitter_handle %}
+                <a href="{{contact_info.twitter_handle}}" target="_blank" title="Twitter" class="share-twitter">Twitter</a>
+                {% endif %}
+                {% if contact_info.instagram %}
+                <a href="{{contact_info.instagram}}" target="_blank" title="Instagram" class="share-instagram">Instagram</a>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -133,22 +146,6 @@
                                     1</span></a>
                                 <ul class="subchildmenu">
                                   <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo2_en/categories.html"><span>Fullwidth
-                                        Banner</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo5_en/categories.html"><span>Boxed
-                                        Image Banner</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo1_en/categories.html"><span>Boxed
-                                        Slider Banner</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo2_en/categories"><span>Left
-                                        Sidebar</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
                                     <a
                                       href="https://www.portotheme.com/magento2/porto/demo2_en/categories/fashion.html"><span>Right
                                         Sidebar</span></a>
@@ -168,22 +165,6 @@
                                 <a href="javascript:void(0)" style="pointer-events: none;"><span>Variations
                                     2</span></a>
                                 <ul class="subchildmenu">
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo18_en/categories.html"><span>Ajax
-                                        Infinite Scroll</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo2_en/categories.html"><span>3
-                                        Columns Products</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo13_en/categories.html"><span>4
-                                        Columns Products</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo10_en/categories.html"><span>5
-                                        Columns Products</span></a>
-                                  </li>
                                   <li class="ui-menu-item level2">
                                     <a href="https://www.portotheme.com/magento2/porto/demo18_en/categories.html"><span>6
                                         Columns Products</span></a>
@@ -229,38 +210,6 @@
                                       href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/3438/s/basketball-sports-blue-shoes/category/461/"><span>Configurable
                                         Product</span></a>
                                   </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/45/s/sprite-yoga-companion-kit/category/5/"><span>Bundle
-                                        Product</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/2046/s/set-of-sprite-yoga-straps/category/3/"><span>Grouped
-                                        Product</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/46/s/beginner-s-yoga/category/10/"><span>Downloadable
-                                        Product</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo5_en/catalog/product/view/id/3434/s/casual-spring-blue-shoes/category/473/"><span>Addtocart
-                                        Sticky</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-wide-grid.html"><span>Vertical
-                                        Tabs</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/"><span>Accordion
-                                        Tabs</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/"><span>Sticky Tabs</span></a>
-                                  </li>
                                 </ul>
                               </li>
                               <li class="ui-menu-item level1 parent">
@@ -272,41 +221,6 @@
                                     <a
                                       href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-default.html"><span>Default
                                         Layout</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-carousel.html"><span>Extended
-                                        Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-fullwidth.html"><span>Full
-                                        Width Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-grid.html"><span>Grid
-                                        Images Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-sticky-right-info.html"><span>Sticky
-                                        Right Side Info</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-wide-grid.html"><span>Vertical
-                                        Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo6_en/catalog/product/view/id/3510/s/blue-jacket/category/476/"><span>With
-                                        Sidebar</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo1_en/catalog/product/view/id/2458/s/porto-extended-camera/"><span>Without
-                                        Sidebar</span></a>
                                   </li>
                                 </ul>
                               </li>
@@ -336,33 +250,16 @@
                               <a href="blog/index.html"><span>Blog</span></a>
                             </li>
                             <li class="ui-menu-item level1">
-                              <a href="blog/post/post-format-image-gallery/index.html"><span>Post</span></a>
+                              <a href="{% url 'cart:wish_detail' %}"><span>Wishlist({{cart_wish.length_wish}})</span></a>
                             </li>
                             <li class="ui-menu-item level1">
-                              <a href="checkout/cart/index.html"><span>Shopping Cart</span></a>
+                              <a href="{% url 'cart:cart_detail' %}"><span>Shopping Cart({{cart_wish.length_cart}})</span></a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="ui-menu-item level1">
-                              <a href="checkout/index.html"><span>Checkout</span></a>
+                              <a href="{% url 'profile' %}"><span>My Account</span></a>
                             </li>
-                            <li class="ui-menu-item level1">
-                              <a href="customer/account/index.html"><span>My Account</span></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="ui-menu-item level0 classic parent">
-                      <div class="open-children-toggle"></div>
-                      <a href="javascript:void(0)" class="level-top"><span>Features</span></a>
-                      <div class="level0 submenu">
-                        <div class="row">
-                          <ul class="subchildmenu">
-                            <li class="ui-menu-item level1">
-                              <a href="porto-header-types/index.html"><span>Header Types</span></a>
-                            </li>
-                            <li class="ui-menu-item level1">
-                              <a href="porto-footer-types/index.html"><span>Footer Types</span></a>
-                            </li>
+                            {% endif %}
                           </ul>
                         </div>
                       </div>
@@ -370,10 +267,6 @@
                     <li class="ui-menu-item level0">
                       <div class="open-children-toggle"></div>
                       <a href="blog/index.html" class="level-top"><span>Blog</span></a>
-                    </li>
-                    <li class="ui-menu-item level0 last" style="margin-top: 0;">
-                      <div class="open-children-toggle"></div>
-                      <a href="#" class="level-top"><span>Buy Porto!</span></a>
                     </li>
                   </ul>
                   </ul>
@@ -446,7 +339,7 @@
                         role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" />
                       <div id="search_autocomplete" class="search-autocomplete"></div>
                       <div class="nested">
-                        <a class="action advanced" href="catalogsearch/advanced/index.html"
+                        <a class="action advanced" href="{% url 'root:search' %}"
                           data-action="advanced-search">
                           Advanced Search </a>
                       </div>
@@ -546,21 +439,21 @@
             </div>
           </div>
           <div class="header-contact">
-            <a href="customer/account/index.html" class="my-account" title="My Account"><i
+            <a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'sign_in' %}{% endif %}" class="my-account" title="My Account"><i
                 class="porto-icon-user-2"></i></a>
-            <a href="customer/account/login/referer/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vd2lzaGxpc3Q%2c/index01cc.html"
+            <a href="{% url 'cart:wish_detail' %}"
               class="wishlist mr-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
           </div>
 
           <div data-block="minicart" class="minicart-wrapper cart-design-1">
-            <a class="action showcart" href="checkout/cart/index.html" data-bind="scope: 'minicart_content'">
+            <a class="action showcart" href="{% url 'cart:cart_detail' %}" data-bind="scope: 'minicart_content'">
               <i class="minicart-icon porto-icon-shopping-cart"></i>
               <span class="text">Cart</span>
               <span class="counter qty empty"
                 data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
                 <span class="counter-number">
                   <!-- ko if: getCartParam('summary_count') --><!-- ko text: getCartParam('summary_count') --><!-- /ko --><!-- /ko -->
-                  <!-- ko ifnot: getCartParam('summary_count') -->0<!-- /ko -->
+                  <!-- ko ifnot: getCartParam('summary_count') -->{{cart_wish.length_cart}}<!-- /ko -->
                 </span>
                 <span class="counter-label">
                   <!-- ko i18n: 'items' --><!-- /ko -->
@@ -592,18 +485,6 @@
                 <!-- ko template: getTemplate() --><!-- /ko -->
               </div>
             </div>
-            <script>
-              window.checkout = { "shoppingCartUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/checkout\/cart\/", "checkoutUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/checkout\/", "updateItemQtyUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/checkout\/sidebar\/updateItemQty\/", "removeItemUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/checkout\/sidebar\/removeItem\/", "imageTemplate": "Magento_Catalog\/product\/image_with_borders", "baseUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/", "minicartMaxItemsVisible": 5, "websiteId": "1", "maxItemsToDisplay": 10, "storeId": "29", "customerLoginUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/login\/referer\/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v\/", "isRedirectRequired": false, "autocomplete": "off", "captcha": { "user_login": { "isCaseSensitive": false, "imageHeight": 50, "imageSrc": "", "refreshUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/captcha\/refresh\/", "isRequired": false, "timestamp": 1676717458 } } };
-            </script>
-            <script type="text/x-magento-init">
-  {
-      "[data-block='minicart']": {
-          "Magento_Ui/js/core/app": {"components":{"minicart_content":{"children":{"subtotal.container":{"children":{"subtotal":{"children":{"subtotal.totals":{"config":{"display_cart_subtotal_incl_tax":0,"display_cart_subtotal_excl_tax":1,"template":"Magento_Tax\/checkout\/minicart\/subtotal\/totals"},"children":{"subtotal.totals.msrp":{"component":"Magento_Msrp\/js\/view\/checkout\/minicart\/subtotal\/totals","config":{"displayArea":"minicart-subtotal-hidden","template":"Magento_Msrp\/checkout\/minicart\/subtotal\/totals"}}},"component":"Magento_Tax\/js\/view\/checkout\/minicart\/subtotal\/totals"}},"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/subtotal"}}},"component":"uiComponent","config":{"displayArea":"subtotalContainer"}},"item.renderer":{"component":"uiComponent","config":{"displayArea":"defaultRenderer","template":"Magento_Checkout\/minicart\/item\/default"},"children":{"item.image":{"component":"Magento_Catalog\/js\/view\/image","config":{"template":"Magento_Catalog\/product\/image","displayArea":"itemImage"}},"checkout.cart.item.price.sidebar":{"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/item\/price","displayArea":"priceSidebar"}}}},"extra_info":{"component":"uiComponent","config":{"displayArea":"extraInfo"}},"promotion":{"component":"uiComponent","config":{"displayArea":"promotion"}}},"config":{"itemRenderer":{"default":"defaultRenderer","simple":"defaultRenderer","virtual":"defaultRenderer"},"template":"Magento_Checkout\/minicart\/content"},"component":"Magento_Checkout\/js\/view\/minicart"}},"types":[]}        },
-      "*": {
-          "Magento_Ui/js/block-loader": "/static/pub/static/version1627880338/frontend/Smartwave/porto/en_US/images/loader-1.gif"
-      }
-  }
-  </script>
           </div>
         </div>
       </div>

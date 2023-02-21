@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+
+    'blogs.apps.BlogsConfig',
     #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'crispy_forms',
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'django.contrib.humanize',
+
     # 'phone_field',
 ]
 
@@ -111,7 +115,7 @@ else:
             'PORT': '',
         }
     }
-
+SITE_ID = 1
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

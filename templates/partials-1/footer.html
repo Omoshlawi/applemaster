@@ -108,7 +108,9 @@
                       <ul>
                         <li><a href="{% url 'root:about' %}">About Us</a></li>
                         <li><a href="{% url 'root:contact' %}">Contact Us</a></li>
+                        {% if user.is_authenticated %}
                         <li><a href="{% url 'profile' %}">My Account</a></li>
+                        {% endif %}
                       </ul>
                     </div>
                     <div class="col-xl-6">
@@ -134,8 +136,8 @@
                     </div>
                     <div class="col-xl-6">
                       <ul>
-                        <li><a href="#">Cart</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart({{cart_wish.length_cart}})</a></li>
+                        <li><a href="{% url 'cart:wish_detail' %}">Wishlist({{cart_wish.length_wish}})</a></li>
                       </ul>
                     </div>
                   </div>
