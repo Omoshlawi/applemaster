@@ -142,39 +142,17 @@
                             <ul class="subchildmenu col-md-8 mega-columns columns2">
                               <li class="ui-menu-item level1 parent">
                                 <div class="open-children-toggle"></div>
-                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Variations
-                                    1</span></a>
+                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Categories</span></a>
                                 <ul class="subchildmenu">
                                   <li class="ui-menu-item level2">
                                     <a
-                                      href="https://www.portotheme.com/magento2/porto/demo2_en/categories/fashion.html"><span>Right
-                                        Sidebar</span></a>
+                                      href=""><span>All</span></a>
                                   </li>
+                                  {% for category in categories %}
                                   <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo17_en/categories.html"><span>Product
-                                        Flex Grid</span></a>
+                                    <a href="{{ category.get_absolute_url }}"><span>{{ category.title }}</span></a>
                                   </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="porto-product-list-types/index.html"><span>Product List Item
-                                        Types</span></a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="ui-menu-item level1 parent">
-                                <div class="open-children-toggle"></div>
-                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Variations
-                                    2</span></a>
-                                <ul class="subchildmenu">
-                                  <li class="ui-menu-item level2">
-                                    <a href="https://www.portotheme.com/magento2/porto/demo18_en/categories.html"><span>6
-                                        Columns Products</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="javascript:void(0)"><span>7 Columns Products</span></a>
-                                  </li>
-                                  <li class="ui-menu-item level2">
-                                    <a href="javascript:void(0)"><span>8 Columns Products</span></a>
-                                  </li>
+                                  {% endfor %}
                                 </ul>
                               </li>
                             </ul>
@@ -266,7 +244,7 @@
                     </li>
                     <li class="ui-menu-item level0">
                       <div class="open-children-toggle"></div>
-                      <a href="{% url 'blogs:index' %}" class="level-top"><span>Blog</span></a>
+                      <a href="{% url 'shop:product_list' %}" class="level-top"><span>Shop</span></a>
                     </li>
                   </ul>
                   </ul>

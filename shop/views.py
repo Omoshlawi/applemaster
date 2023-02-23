@@ -126,7 +126,8 @@ class ProductsView(View):
                 'tags': self.tags,
                 'tag_filter': self.tag_filters,
                 'category_filter': self.category_filter,
-                'sort_by': self.sort_filter
+                'sort_by': self.sort_filter,
+                'title': 'Shop' if not self.category else self.category.name
             }
         )
 
@@ -238,11 +239,11 @@ def product_list(request, category_slug=None):
         'shop/product/list-1.html',
         {
             'category': category,
-            # 'products': products,
             'products': products_paged,
             'nav': nav,
             'bread_crumb': bread_crumb,
-            'tags': tags
+            'tags': tags,
+            'title': 'Shop',
         }
     )
 
