@@ -116,7 +116,7 @@ class ProductsView(View):
     def render(self):
         return render(
             self.request,
-            'shop/product/list.html',
+            'shop/product/list-1.html',
             {
                 'category': self.category,
                 # 'products': self.products,
@@ -235,7 +235,7 @@ def product_list(request, category_slug=None):
 
     return render(
         request,
-        'shop/product/list.html',
+        'shop/product/list-1.html',
         {
             'category': category,
             # 'products': products,

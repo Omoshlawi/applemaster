@@ -1,4 +1,5 @@
 {% extends 'base-1.html' %}
+{% load humanize %}
 {% block meta %}
 {% endblock %}
 {% block title %}
@@ -173,68 +174,36 @@
       }
     </style>
     <div class="row home-slider no-padding">
+      {% if sliders %}
       <div class="col-md-12">
         <div class="fullscreen-carousel">
           <div id="banner-slider-demo-3"
             class="porto-carousel owl-carousel mb-0 nav-pos-inside nav-style-4 show-nav-hover">
+            {% for slider in sliders %}
             <div class="porto-ibanner" style="">
-              <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_banner1.jpg" />
+              <img src="{% if slider.image %}{{ slider.image.url }}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_banner1.jpg{% endif %}" />
               <div class="porto-ibanner-desc no-padding d-flex">
                 <div class="container">
                   <div class="porto-ibanner-container">
                     <div class="porto-ibanner-layer" style="left: 10%; top: 50%; transform: translateY(-50%);">
                       <h2 style="font-size: 2.5em; color: #777777; line-height: 1; font-weight: 400;"
-                        class="vc_custom_heading custom-font4 mb-3 align-left">Winter Fashion Trends</h2>
+                        class="vc_custom_heading custom-font4 mb-3 align-left">{{slider.title}}</h2>
                       <h3 style="font-size: 2.5em; line-height: 1;"
-                        class="vc_custom_heading mb-0 ls-185 align-left text-uppercase">get up to 30% off</h3>
-                      <h3 style="font-size: 5.625em; line-height: 1;" class="vc_custom_heading mb-4 align-left">on
-                        Jackets</h3>
-                      <h5 style="font-size: 1.125em;"
-                        class="vc_custom_heading pull-left p-t-sm mr-3 align-left text-uppercase">Starting At</h5>
-                      <h5 style="font-size: 2.25em; line-height: 1;"
+                        class="vc_custom_heading mb-0 ls-185 align-left text-uppercase">{{ slider.description|truncatechars:20 }}</h3>
+                      <h3 style="font-size: 5.625em; line-height: 1;" class="vc_custom_heading mb-4 align-left">Best Shop.</h3>
+                      <!-- <h5 style="font-size: 1.125em;"
+                        class="vc_custom_heading pull-left p-t-sm mr-3 align-left text-uppercase">Starting At</h5> -->
+                      <!-- <h5 style="font-size: 2.25em; line-height: 1;"
                         class="vc_custom_heading coupon-sale-text mb-4 align-left"><sup>$</sup>199<sup>99</sup>
-                      </h5>
-                      <div class="btn-container mb-0 mt-2 text-left"><button class="btn btn-modern btn-xl btn-dark">Shop
-                          Now</button></div>
+                      </h5> -->
+                      <div class="btn-container mb-0 mt-2 text-left"><a href="{% url 'shop:product_list' %}" class="btn btn-modern btn-xl btn-dark">Shop
+                          Now</a></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="porto-ibanner" style="">
-              <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_banner2.jpg" />
-              <div class="porto-ibanner-desc no-padding d-flex">
-                <div class="container">
-                  <div class="porto-ibanner-container">
-                    <div class="porto-ibanner-layer" style="left: 10%; top: 50%; transform: translateY(-50%);">
-                      <h2 style="font-size: 3.4375em; line-height: 1;"
-                        class="vc_custom_heading custom-font4 mb-1 align-left">New Season Hats</h2>
-                      <h3 style="font-size: 7em; line-height: 1;"
-                        class="vc_custom_heading mb-0 vertical-font align-left text-uppercase"><small>UP
-                          TO</small>20% OFF</h3>
-                      <div class="porto-separator short mt-2 m-b-n">
-                        <div class="divider divider-small align_left solid">
-                          <hr style="background-color: #222529; height: 5px;" />
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="vc_column-inner">
-                            <h5 style="font-size: 1.25em;"
-                              class="vc_custom_heading d-inline-block mr-5 align-left text-uppercase">Starting At
-                              $<em>19</em>99</h5>
-                            <div class="btn-container mb-0 d-inline-block" style="margin-left: -4px;">
-                              <button class="btn btn-modern btn-xl btn-dark">Shop Now <i style="padding-left: 7px;"
-                                  class="fas fa-long-arrow-alt-right"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
           <script type="text/javascript">
             require(["jquery", "owl.carousel/owl.carousel.min"], function ($) {
@@ -254,6 +223,7 @@
           </script>
         </div>
       </div>
+      {% endif %}
     </div>
     <div class="container" style="padding-top: 65px; padding-bottom: 30px;">
       <style>
@@ -280,6 +250,7 @@
           text-transform: uppercase;
         }
       </style>
+      {% if categories %}
       <div class="porto-products text-center">
         <h2 class="section-title slider-title mb-4"
           style="font-size: 1.125rem;line-height: 1.5;text-align: center;letter-spacing: -.3px;">
@@ -290,230 +261,29 @@
           <ul id="products-category"
             class="products products-container products-slider owl-carousel category-pos-outside category-text-center category-color-dark nav-pos-outside nav-style-4 show-nav-hover owl-loaded owl-drag">
 
-
-
-
-
-
             <div class="owl-stage-outer">
               <div class="owl-stage"
                 style="transform: translate3d(-622px, 0px, 0px); transition: all 0s ease 0s; width: 2490px;">
+                {% for category in categories %}
                 <div class="owl-item cloned" style="width: 207.5px;">
                   <li class="product-category product-col">
-                    <a href="#">
+                    <a href="{{category.get_absolute_url}}">
                       <span class="thumb-info align-center">
                         <span class="thumb-info-wrapper tf-none">
                           <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-21.jpg">
+                            src="{% if category.image  %} {{category.image.url}} {% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/product-21.jpg{% endif %}">
                         </span>
                         <span class="thumb-info-wrap">
                           <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Fashion</h3>
-                            <span class="thumb-info-type"> <mark class="count">11</mark> Products </span>
+                            <h3 class="sub-title thumb-info-inner">{{ category.name }}</h3>
+                            <span class="thumb-info-type"> <mark class="count">{{category.products.all | length}}</mark> Products </span>
                           </span>
                         </span>
                       </span>
                     </a>
                   </li>
                 </div>
-                <div class="owl-item cloned" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/headphone-1.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Headphone</h3>
-                            <span class="thumb-info-type"> <mark class="count">3</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item cloned" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/shoes-16-2.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Shoes</h3>
-                            <span class="thumb-info-type"> <mark class="count">4</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item active" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-20.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Accessories</h3>
-                            <span class="thumb-info-type"> <mark class="count">8</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item active" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-89-2.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Bags</h3>
-                            <span class="thumb-info-type"> <mark class="count">4</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/headphone-3.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Electronics</h3>
-                            <span class="thumb-info-type"> <mark class="count">8</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-21.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Fashion</h3>
-                            <span class="thumb-info-type"> <mark class="count">11</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/headphone-1.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Headphone</h3>
-                            <span class="thumb-info-type"> <mark class="count">3</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/shoes-16-2.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Shoes</h3>
-                            <span class="thumb-info-type"> <mark class="count">4</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item cloned" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-20.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Accessories</h3>
-                            <span class="thumb-info-type"> <mark class="count">8</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item cloned" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/product-89-2.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Bags</h3>
-                            <span class="thumb-info-type"> <mark class="count">4</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
-                <div class="owl-item cloned" style="width: 207.5px;">
-                  <li class="product-category product-col">
-                    <a href="#">
-                      <span class="thumb-info align-center">
-                        <span class="thumb-info-wrapper tf-none">
-                          <img
-                            src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/03/headphone-3.jpg">
-                        </span>
-                        <span class="thumb-info-wrap">
-                          <span class="thumb-info-title">
-                            <h3 class="sub-title thumb-info-inner">Electronics</h3>
-                            <span class="thumb-info-type"> <mark class="count">8</mark> Products </span>
-                          </span>
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </div>
+                {% endfor %}
               </div>
             </div>
             <div class="owl-nav disabled">
@@ -560,6 +330,7 @@
           </script>
         </div>
       </div>
+      {% endif %}
     </div>
     <div id="home_ads" class="home-ads mt-0 mb-0" style="padding: 60px 0 40px;background-color: #f4f4f4;">
       <div class="container">
@@ -578,148 +349,81 @@
             transition: box-shadow 0.3s;
           }
         </style>
+        {% if tags %}
         <div class="row">
+          {% for tag in tags %}
           <div class="col-sm-6 col-md-6 col-lg-3 col-12">
             <div class="wpb_wrapper vc_column-inner">
               <div class="porto-ibanner porto-ibe-boxshadow">
-                <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads1.jpg"
+                <img src="{% if tag.image %}{{tag.image.url}}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads1.jpg{% endif %}"
                   class="porto-ibanner-img" />
                 <div class="porto-ibanner-desc no-padding d-flex">
                   <div class="porto-ibanner-layer" style="left: 10%; bottom: 8%;">
                     <h3 style="font-size: 1.625em; line-height: 1;" class="vc_custom_heading mb-2 ls-n-50 align-left">
-                      Sunglasses Sale</h3>
+                      {{ tag }}</h3>
                     <p style="font-size: 0.9375em; color: #777777; line-height: 1.4;"
-                      class="vc_custom_heading mb-3 align-left">See all and find yours</p>
-                    <div class="btn-container mb-0 d-inline-block"><button class="btn btn-modern btn-sm btn-dark">Shop
-                        By Glasses</button></div>
+                      class="vc_custom_heading mb-3 align-left">{{ tag.description|truncatechars:50 }}</p>
+                    <div class="btn-container mb-0 d-inline-block"><a href="{% url 'shop:product_list' %}" class="btn btn-modern btn-sm btn-dark">Shop Now
+                    </a></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-md-6 col-lg-3 col-12">
-            <div class="wpb_wrapper vc_column-inner">
-              <div class="porto-ibanner porto-ibe-boxshadow">
-                <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads2.jpg"
-                  class="porto-ibanner-img" />
-                <div class="porto-ibanner-desc no-padding d-flex">
-                  <div class="porto-ibanner-layer"
-                    style="width: 100%; left: 50%; transform: translateX(-50%); top: 20%;">
-                    <h3 style="font-size: 1.625em; line-height: 1; text-align: center;"
-                      class="vc_custom_heading mb-0 ls-n-50">Cosmetics Trends</h3>
-                    <p style="font-size: 0.9375em; color: #777777; line-height: 1.5; text-align: center;"
-                      class="vc_custom_heading mb-4">Browse in all our categories</p>
-                    <div class="btn-container mb-0 text-center"><button class="btn btn-modern btn-sm btn-dark">Shop By
-                        Glasses</button></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3 col-12">
-            <div class="wpb_wrapper vc_column-inner">
-              <div class="porto-ibanner porto-ibe-boxshadow">
-                <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads3.jpg"
-                  class="porto-ibanner-img" />
-                <div class="porto-ibanner-desc no-padding d-flex">
-                  <div class="porto-ibanner-layer"
-                    style="width: 100%; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-                    <h3 style="font-size: 1.625em; line-height: 1; text-align: center;"
-                      class="vc_custom_heading mb-1 ls-n-50 heading-light">Fashion Summer Sale</h3>
-                    <p style="font-size: 0.9375em; color: rgba(255, 255, 255, 0.6); line-height: 1.4; text-align: center;"
-                      class="vc_custom_heading mb-4">Browse in all our categories</p>
-                    <div class="vc_btn3-container mb-0 text-center"><button
-                        class="vc_btn3 vc_btn3-shape-default btn btn-modern btn-sm btn-light">Shop By
-                        Glasses</button></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 vc_column_container col-md-6 col-lg-3 col-12">
-            <div class="wpb_wrapper vc_column-inner">
-              <div class="porto-ibanner porto-ibe-boxshadow">
-                <img src="/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads4.jpg"
-                  class="porto-ibanner-img" />
-                <div class="porto-ibanner-desc no-padding d-flex">
-                  <div class="porto-ibanner-layer layer-border"
-                    style="width: 82%; left: 50%; transform: translateX(-50%); bottom: 8%; padding-top: 2.75em; border: 5px solid #222529;">
-                    <h3 style="font-size: 1.375em; line-height: 1; text-align: center;"
-                      class="vc_custom_heading mb-2 ls-n-50">UP TO 70% IN ALL BAGS</h3>
-                    <p style="font-size: 0.9375em; color: #777777; line-height: 1; text-align: center;"
-                      class="vc_custom_heading mb-0">Starting at $99</p>
-                    <div class="btn-container mb-0 position-relative bottom-50 text-center"><button
-                        class="btn btn-modern btn-md btn-dark">Shop By Bags</button></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
     </div>
+    
     <div class="porto-inner-container" style="padding: 65px 0 30px;">
+      {% if featured %}
       <div class="container">
         <h2 class="section-title slider-title mb-5"
           style="font-size: 1.125rem;line-height: 1;text-align: center;letter-spacing: -.3px;">
-          <span class="inline-title">POPULAR PRODUCTS</span>
+          <span class="inline-title">FEATURED PRODUCTS</span>
           <span class="line"></span>
         </h2>
         <div class="porto-products">
           <div class="products wrapper grid columns6 products-grid   ">
-            <ol class="filterproducts products list items product-items">
+            <ol class="filterproducts products list items product-items row">
+              {% for f in featured %}
               <li
                 class="item product product-item nth-child-2np1 nth-child-3np1 nth-child-4np1 nth-child-5np1 nth-child-6np1 nth-child-7np1 nth-child-8np1">
                 <div class="product-item-info type3" data-container="product-grid">
                   <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3382/s/girl-shoes/"
+                    <a href="{{ f.get_absolute_url }}"
                       tabindex="-1">
                       <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg"
+                        data-src="{% if f.image %}{{ f.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
                         width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg"
+                        src="{% if f.image %}{{ f.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
                         style="display: block;">
                     </a>
                     <div class="product-item-inner">
                       <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3382/"
-                            method="post">
-                            <input type="hidden" name="product" value="3382">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzODIv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
+                        <a href="{{ f.get_absolute_url }}" class="action tocart actions-secondary" title="Add to Cart"
+                          aria-label="Add to Cart"
+                          data-action="add-to-cart" role="button">
+                          <span>Add to Cart</span>
+                        </a>
+                        <a href="{% url 'cart:wish_add' f.id %}" class="action towishlist actions-secondary" title="Add to Wish List"
                           aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3382,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
                           data-action="add-to-wishlist" role="button">
                           <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3382&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
                         </a>
                       </div>
                     </div>
                     <!-- Dailydeal Product data -->
                     <!-- Dailydeal Product End -->
                     <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3382/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
+                      href="{{ f.get_absolute_url }}"><span><em class="porto-icon-eye"></em><span>View Detail</span></span></a>
                   </div>
                   <div class="product details product-item-details">
                     <strong class="product name product-item-name">
                       <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3382/s/girl-shoes/">
-                        Girl Shoes </a>
+                        href="{{ f.get_absolute_url }}">
+                        {{ f.name }} </a>
                     </strong>
                     <div class="product-reviews-summary short">
                       <div class="rating-summary">
@@ -729,900 +433,17 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
                       data-price-box="product-id-3382">
-
-
-
                       <span class="price-container price-final_price tax weee">
                         <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$101.00</span></span>
+                          class="price-wrapper "><span class="price">Ksh. {{f.price|intcomma }}</span></span>
                       </span>
-
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="item product product-item nth-child-2n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3381/s/glasses/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-20_5.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-20_5.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3381/"
-                            method="post">
-                            <input type="hidden" name="product" value="3381">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzODEv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3381,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3381&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3381/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3381/s/glasses/">
-                        Glasses </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3381"
-                      data-price-box="product-id-3381">
-
-
-
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3381" data-price-amount="101" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$101.00</span></span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2np1 nth-child-3n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3380/s/1ideapad/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/h/e/headphone-3.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/h/e/headphone-3.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-labels">
-                      <div class="product-label sale-label">-20%</div>
-                    </div>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3380/"
-                            method="post">
-                            <input type="hidden" name="product" value="3380">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzODAv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3380,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3380&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3380/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3380/s/1ideapad/">
-                        Ideapad </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3380"
-                      data-price-box="product-id-3380">
-
-                      <span class="old-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">was</span>
-                          <span id="old-price-3380" data-price-amount="299" data-price-type="oldPrice"
-                            class="price-wrapper "><span class="price">$299.00</span></span>
-                        </span>
-                      </span>
-                      <span class="special-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">Special Price</span>
-                          <span id="product-price-3380" data-price-amount="239" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$239.00</span></span>
-                        </span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2n nth-child-3np1 nth-child-4n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3379/s/men-cap/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-31_6.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-31_6.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3379/"
-                            method="post">
-                            <input type="hidden" name="product" value="3379">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzkv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3379,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3379&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3379/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3379/s/men-cap/">
-                        Men Cap </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3379"
-                      data-price-box="product-id-3379"><span class="normal-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">As low as</span>
-                          <span id="product-price-3379" data-price-amount="199" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$199.00</span></span>
-                        </span>
-                      </span>
-
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2np1 nth-child-4np1 nth-child-5n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3378/s/1men-shoes/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-19-2_2.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-19-2_2.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3378/"
-                            method="post">
-                            <input type="hidden" name="product" value="3378">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzgv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3378,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3378&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3378/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3378/s/1men-shoes/">
-                        Men Shoes </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3378"
-                      data-price-box="product-id-3378"><span class="normal-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">As low as</span>
-                          <span id="product-price-3378" data-price-amount="39" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$39.00</span></span>
-                        </span>
-                      </span>
-
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2n nth-child-3n nth-child-5np1 nth-child-6n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3377/s/1porto-both-sticky-info/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-82-2.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-82-2.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3377/"
-                            method="post">
-                            <input type="hidden" name="product" value="3377">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzcv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3377,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3377&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3377/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3377/s/1porto-both-sticky-info/">
-                        Porto Both Sticky Info </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3377"
-                      data-price-box="product-id-3377">
-
-
-
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3377" data-price-amount="79" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$79.00</span></span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2np1 nth-child-3np1 nth-child-6np1 nth-child-7n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3376/s/porto-extended-layout/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-79-2_1.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-79-2_1.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3376/"
-                            method="post">
-                            <input type="hidden" name="product" value="3376">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzYv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3376,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3376&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3376/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3376/s/porto-extended-layout/">
-                        Porto Extended Layout </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3376"
-                      data-price-box="product-id-3376">
-
-
-
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3376" data-price-amount="69" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$69.00</span></span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2n nth-child-4n nth-child-7np1 nth-child-8n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3375/s/porto-full-width/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-83-2.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-83-2.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3375/"
-                            method="post">
-                            <input type="hidden" name="product" value="3375">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzUv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3375,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3375&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3375/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3375/s/porto-full-width/">
-                        Porto Full-Width </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3375"
-                      data-price-box="product-id-3375">
-
-
-
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3375" data-price-amount="101" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$101.00</span></span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2np1 nth-child-3n nth-child-4np1 nth-child-8np1">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3374/s/porto-left-sidebar/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-9-grey_8.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-9-grey_8.jpeg"
-                        style="display: block;">
-                      <img class="product-image-photo hover_image"
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-9-2-grey_2.jpeg"
-                        alt="">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3374/"
-                            method="post">
-                            <input type="hidden" name="product" value="3374">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzQv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3374,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3374&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3374/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3374/s/porto-left-sidebar/">
-                        Porto Left Sidebar </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3374"
-                      data-price-box="product-id-3374"><span class="normal-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">As low as</span>
-                          <span id="product-price-3374" data-price-amount="259" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$259.00</span></span>
-                        </span>
-                      </span>
-
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2n nth-child-3np1 nth-child-5n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3373/s/porto-right-sidebar/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-89-2_3.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-89-2_3.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-labels">
-                      <div class="product-label sale-label">-13%</div>
-                    </div>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3373/"
-                            method="post">
-                            <input type="hidden" name="product" value="3373">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzMv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3373,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3373&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3373/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3373/s/porto-right-sidebar/">
-                        Porto Right Sidebar </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3373"
-                      data-price-box="product-id-3373">
-
-                      <span class="old-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">was</span>
-                          <span id="old-price-3373" data-price-amount="299" data-price-type="oldPrice"
-                            class="price-wrapper "><span class="price">$299.00</span></span>
-                        </span>
-                      </span>
-                      <span class="special-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">Special Price</span>
-                          <span id="product-price-3373" data-price-amount="259" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$259.00</span></span>
-                        </span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2np1 nth-child-5np1">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3372/s/1porto-transparent-images/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-18-2-grey.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-18-2-grey.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3372/"
-                            method="post">
-                            <input type="hidden" name="product" value="3372">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzIv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3372,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3372&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3372/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3372/s/1porto-transparent-images/">
-                        1Porto Transparent Images </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3372"
-                      data-price-box="product-id-3372">
-
-
-
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3372" data-price-amount="49" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">$49.00</span></span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="item product product-item nth-child-2n nth-child-3n nth-child-4n nth-child-6n">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3371/s/sports-watch/"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-72.jpeg"
-                        width="350" height="350" alt=""
-                        src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-72.jpeg"
-                        style="display: block;">
-                    </a>
-                    <div class="product-labels">
-                      <div class="product-label sale-label">-13%</div>
-                    </div>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <div class="actions-primary">
-                          <form data-role="tocart-form"
-                            action="https://www.portotheme.com/magento2/porto/demo3_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v/product/3371/"
-                            method="post">
-                            <input type="hidden" name="product" value="3371">
-                            <input type="hidden" name="uenc"
-                              value="aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4vY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1Y0c5eWRHOTBhR1Z0WlM1amIyMHZiV0ZuWlc1MGJ6SXZjRzl5ZEc4dlpHVnRiek5mWlc0di9wcm9kdWN0LzMzNzEv">
-                            <input name="form_key" type="hidden" value="WOOnLcNxaMXLNHv4"> <button type="submit"
-                              title="Add to Cart" class="action tocart primary">
-                              <span>Add to Cart</span>
-                            </button>
-                          </form>
-                        </div>
-                        <a href="#" class="action towishlist actions-secondary" title="Add to Wish List"
-                          aria-label="Add to Wish List"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:3371,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          data-action="add-to-wishlist" role="button">
-                          <span>Add to Wish List</span>
-                        </a>
-                        <a href="#" class="action tocompare actions-secondary" title="Add to Compare"
-                          aria-label="Add to Compare"
-                          data-post="{&quot;action&quot;:&quot;https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;3371&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50bzIvcG9ydG8vZGVtbzNfZW4v&quot;}}"
-                          role="button">
-                          <span>Add to Compare</span>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      data-quickview-url="https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/3371/"
-                      href="javascript:void(0);"><span><em class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                  </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="https://www.portotheme.com/magento2/porto/demo3_en/catalog/product/view/id/3371/s/sports-watch/">
-                        Sports Watch </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3371"
-                      data-price-box="product-id-3371">
-
-                      <span class="old-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">was</span>
-                          <span id="old-price-3371" data-price-amount="299" data-price-type="oldPrice"
-                            class="price-wrapper "><span class="price">$299.00</span></span>
-                        </span>
-                      </span>
-                      <span class="special-price">
-
-
-                        <span class="price-container price-final_price tax weee">
-                          <span class="price-label">Special Price</span>
-                          <span id="product-price-3371" data-price-amount="259" data-price-type="finalPrice"
-                            class="price-wrapper "><span class="price">$259.00</span></span>
-                        </span>
-                      </span>
-
-                    </div>
-                  </div>
-                </div>
-              </li>
+              {% endfor %}
             </ol>
           </div>
           <script type="text/javascript">
@@ -1719,9 +540,172 @@
               $('.products.grid .product-items.filterproducts li.product-item:nth-child(8n+1)').addClass('nth-child-8np1');
             });
           </script>
-
-
         </div>
+      </div>
+      {% endif %}
+      <div class="container">
+        {% if recent %}
+        <h2 class="section-title slider-title mb-5"
+          style="font-size: 1.125rem;line-height: 1;text-align: center;letter-spacing: -.3px;">
+          <span class="inline-title">RECENT PRODUCTS</span>
+          <span class="line"></span>
+        </h2>
+        <div class="porto-products">
+          <div class="products wrapper grid columns6 products-grid   ">
+            <ol class="filterproducts products list items product-items row">
+              {% for r in recent %}
+              <li
+                class="item product product-item nth-child-2np1 nth-child-3np1 nth-child-4np1 nth-child-5np1 nth-child-6np1 nth-child-7np1 nth-child-8np1">
+                <div class="product-item-info type3" data-container="product-grid">
+                  <div class="product photo product-item-photo">
+                    <a href="{{ r.get_absolute_url }}"
+                      tabindex="-1">
+                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
+                        data-src="{% if r.image %}{{ r.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        width="350" height="350" alt=""
+                        src="{% if r.image %}{{ r.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        style="display: block;">
+                    </a>
+                    <div class="product-item-inner">
+                      <div class="product actions product-item-actions">
+                        <a href="{{ r.get_absolute_url }}" class="action tocart actions-secondary" title="Add to Cart"
+                          aria-label="Add to Cart"
+                          data-action="add-to-cart" role="button">
+                          <span>Add to Cart</span>
+                        </a>
+                        <a href="{% url 'cart:wish_add' r.id %}" class="action towishlist actions-secondary" title="Add to Wish List"
+                          aria-label="Add to Wish List"
+                          data-action="add-to-wishlist" role="button">
+                          <span>Add to Wish List</span>
+                        </a>
+                      </div>
+                    </div>
+                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
+                      href="{{ r.get_absolute_url }}"><span><em class="porto-icon-eye"></em><span>View Detail</span></span></a>
+                  </div>
+                  <div class="product details product-item-details">
+                    <strong class="product name product-item-name">
+                      <a class="product-item-link"
+                        href="{{ r.get_absolute_url }}">
+                        {{ r.name }} </a>
+                    </strong>
+                    <div class="product-reviews-summary short">
+                      <div class="rating-summary">
+                        <span class="label"><span>Rating:</span></span>
+                        <div class="rating-result" title="0%">
+                          <span style="width:0"><span>0%</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
+                      data-price-box="product-id-3382">
+                      <span class="price-container price-final_price tax weee">
+                        <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
+                          class="price-wrapper "><span class="price">Ksh. {{r.price|intcomma }}</span></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ol>
+          </div>
+          <script type="text/javascript">
+            require([
+              'jquery'
+            ], function ($) {
+              // Timer for LEFT time for Dailydeal product
+              var _second = 1000;
+              var _minute = _second * 60;
+              var _hour = _minute * 60;
+              var _day = _hour * 24;
+              var timer;
+
+              //Set date as magentodatetime
+              var date = new Date('2023-02-20 11:55:42');
+              var l_date = new Date();
+              var offset_date = l_date - date;
+
+              function showRemaining() {
+                $(".sw-dailydeal-wrapper").each(function () {
+                  var unique_id = $(this).attr("data-unique-id");
+                  // get Value of dailydeal product
+                  var cid = 'countdown_' + unique_id;
+                  var daysid = 'countdown_days_' + unique_id;
+                  var hoursid = 'countdown_hours_' + unique_id;
+                  var minutesid = 'countdown_minutes_' + unique_id;
+                  var secondsid = 'countdown_seconds_' + unique_id;
+
+                  var startdateid = 'fromdate_' + unique_id;
+                  var id = 'todate_' + unique_id;
+
+                  var enddate = new Date($('#' + id).val());
+                  var dealstartdate = new Date($('#' + startdateid).val());
+
+                  var currentdate = new Date();
+
+                  //Get Difference between Two dates
+                  var distance = enddate - (currentdate - offset_date);
+
+                  $('.sw-dailydeal-wrapper').show();
+
+                  if (distance < 0) {
+                    // clearInterval(timer);
+                    $('#expired_' + unique_id).html("<span style='font-size:25px; color:#000;'>EXPIRED!<span>");
+
+                  } else if (dealstartdate > currentdate) {
+                    $('.countdowncontainer_' + unique_id).hide();
+                    var msg = "<span style='font-size:15px; color:#000;'> Coming Soon..<br>Deal Start at:<br>" + $('#' + startdateid).val() + "<span>";
+                    $('#expired_' + unique_id).html(msg);
+                  } else {
+                    var days = Math.floor(distance / _day);
+                    var hours = Math.floor((distance % _day) / _hour);
+                    var minutes = Math.floor((distance % _hour) / _minute);
+                    var seconds = Math.floor((distance % _minute) / _second);
+
+                    if (hours < 10)
+                      hours = "0" + hours;
+                    if (minutes < 10)
+                      minutes = "0" + minutes;
+                    if (seconds < 10)
+                      seconds = "0" + seconds;
+                    $('.countdowncontainer_' + unique_id).show();
+                    $('#' + daysid).html(days);
+                    $('#' + hoursid).html(hours);
+                    $('#' + minutesid).html(minutes);
+                    $('#' + secondsid).html(seconds);
+                  }
+                });
+              }
+
+              // Set Interval
+              timer = setInterval(function () {
+                showRemaining();
+              }, 1000);
+            });
+          </script>
+          <script type="text/javascript">
+            require([
+              'jquery'
+            ], function ($) {
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(2n)').addClass('nth-child-2n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(2n+1)').addClass('nth-child-2np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(3n)').addClass('nth-child-3n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(3n+1)').addClass('nth-child-3np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(4n)').addClass('nth-child-4n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(4n+1)').addClass('nth-child-4np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(5n)').addClass('nth-child-5n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(5n+1)').addClass('nth-child-5np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(6n)').addClass('nth-child-6n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(6n+1)').addClass('nth-child-6np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(7n)').addClass('nth-child-7n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(7n+1)').addClass('nth-child-7np1');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(8n)').addClass('nth-child-8n');
+              $('.products.grid .product-items.filterproducts li.product-item:nth-child(8n+1)').addClass('nth-child-8np1');
+            });
+          </script>
+        </div>
+        {% endif %}
         <div class="porto-separator taller">
           <hr class="separator-line  align_center solid" style="background-color:#e7e7e7;">
         </div>
@@ -1740,8 +724,7 @@
                     SUPPORT</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Need Assistence?</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Our customer support team is here to help you whenever you need it.</div>
               </div>
             </div>
           </div>
@@ -1759,9 +742,7 @@
                     PAYMENT</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Safe &amp; Fast</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapibus lacus. Lorem ipsum
-                  dolor sit amet.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">We use industry-standard encryption for safe and fast payment processing.</div>
               </div>
             </div>
           </div>
@@ -1775,12 +756,10 @@
                   </div>
                 </div>
                 <div class="porto-sicon-header">
-                  <h3 class="porto-sicon-title" style="font-weight: 700; font-size: 1.25rem; line-height: 1.4;">FREE
-                    RETURNS</h3>
+                  <h3 class="porto-sicon-title" style="font-weight: 700; font-size: 1.25rem; line-height: 1.4;">7 DAY RETURN POLICY</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Easy &amp; Free</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Hassle-free 7-day returns, free of charge.</div>
               </div>
             </div>
           </div>
@@ -1796,10 +775,9 @@
                 <div class="porto-sicon-header">
                   <h3 class="porto-sicon-title" style="font-weight: 700; font-size: 1.25rem; line-height: 1.4;">FREE
                     SHIPPING</h3>
-                  <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Orders Over $99</p>
+                  <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Orders Over 10k</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Free shipping on orders over 10k - no extra costs.</div>
               </div>
             </div>
           </div>
@@ -1810,6 +788,7 @@
           }
         </style>
       </div>
+      
     </div>
   </div>
 </div>
@@ -1828,7 +807,7 @@
                     }
                 }
             }
-      </script>
+</script>
 <script>
   requirejs(['jquery', 'weltpixel_quickview'],
     function ($, quickview) {

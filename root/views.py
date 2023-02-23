@@ -32,7 +32,7 @@ def index(request):
     brands = None
     tags = Tag.objects.all()
     if len(tags) > 2:
-        tags = tags[:2]
+        tags = tags[:4]
     for obj in display:
         if obj.category_name == "Sliders":
             sliders = get_object_or_404(FrontDisplayCategory, category_name="Sliders").displays.all()
