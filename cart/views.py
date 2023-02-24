@@ -77,7 +77,7 @@ def wish_detailed(request):
         BreadCrumb("Wish list", reverse("cart:wish_detail"), True),
     ]
 
-    return render(request, 'cart/wish_detailed.html',
+    return render(request, 'cart/wish_detailed-1.html',
                   {'hidden_form': CartAddSingleProduct(), "bread_crumb": bread_crumb})
 
 

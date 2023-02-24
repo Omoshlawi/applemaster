@@ -100,5 +100,8 @@ def contact(request):
     )
 
 def advanced_search(request):
-    pass
+    context={
+        'title':'Advanced Search',
+    }
+    return render(request, 'search.html', context)
 
