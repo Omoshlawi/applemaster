@@ -62,3 +62,15 @@ def create_profile(sender, instance, created, **kwargs):
 def create_residential_ifo(sender, instance, created, **kwargd):
     if created:
         ResidentialInfo.objects.create(user=instance)
+
+
+class Team(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='teams/')
+    order = models.SmallIntegerField(default=0)
+    class Meta:
+        ordering = ('-order',)
+        
+    def __str__(self):
+        return self.user.username

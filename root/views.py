@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.shortcuts import reverse
 from django.views.decorators.http import require_POST
+from account.models import Team
 
 from root.breadcrumb import BreadCrumb
 from root.forms import ContactForm
@@ -77,6 +78,7 @@ def about(request):
         'nav': nav, 
         "bread_crumb": bread_crumb,
         'title': 'About Us',
+        'teams': Team.objects.all(),
     }
     return render(request, "about-1.html", context)
 
