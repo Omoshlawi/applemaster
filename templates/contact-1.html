@@ -1,4 +1,5 @@
 {% extends 'base-1.html' %}
+{% load crispy_forms_tags %}
 {% block meta %}
 {% endblock %}
 {% block content %}
@@ -31,86 +32,48 @@
             "pageCache": {"url":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/page_cache\/block\/render\/","handles":["default","contact_index_index"],"originalRequest":{"route":"contact","controller":"index","action":"index","uri":"\/magento2\/porto\/demo3_en\/contact"},"versionCookieName":"private_content_version"}        }
     }
 </script>
-
         <div class="row">
           <div class="col-md-8">
-            <form class="form contact" action="https://www.portotheme.com/magento2/porto/demo3_en/contact/index/post/"
-              id="contact-form" method="post" data-hasrequired="* Required Fields" data-mage-init='{"validation":{}}'>
+            <form class="form contact" action=""
+              id="contact-form" method="post">
               <fieldset class="fieldset">
-                <legend class="legend"><span>Write <b>Us</b></span></legend><br />
-                <div class="fieldset row">
-                  <div class="fields col-md-6">
-                    <div class="field name required">
-                      <label class="label" for="name"><span>Name</span></label>
-                      <div class="control">
-                        <input name="name" id="name" title="Name" value="" class="input-text" type="text"
-                          data-validate="{required:true}" />
-                      </div>
-                    </div>
-                    <div class="field email required">
-                      <label class="label" for="email"><span>Email</span></label>
-                      <div class="control">
-                        <input name="email" id="email" title="Email" value="" class="input-text" type="email"
-                          data-validate="{required:true, 'validate-email':true}" />
-                      </div>
-                    </div>
-                    <div class="field telephone">
-                      <label class="label" for="telephone"><span>Phone Number</span></label>
-                      <div class="control">
-                        <input name="telephone" id="telephone" title="Phone Number" value="" class="input-text"
-                          type="text" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="fields col-md-6">
-                    <div class="field comment required">
-                      <label class="label" for="comment"><span>What’s on your mind?</span></label>
-                      <div class="control">
-                        <textarea name="comment" id="comment" title="What’s on your mind?" class="input-text" cols="5"
-                          rows="8" data-validate="{required:true}"></textarea>
-                      </div>
-                    </div>
+                <legend class="legend text-center text-dark h1"><span>Write <b>Us</b></span></legend><br />
+                <div class="fieldset row justify-content-center">
+                  <div class="col-md-8">
+                    {{form | crispy}}
+                    {% csrf_token %}
+                    <button type="submit" title="Submit" class="action submit primary w-100">
+                      <span>Submit</span>
+                    </button>
                   </div>
                 </div>
               </fieldset>
-              <div class="actions-toolbar">
-                <div class="primary">
-                  <input type="hidden" name="hideit" id="hideit" value="" />
-                  <button type="submit" title="Submit" class="action submit primary">
-                    <span>Submit</span>
-                  </button>
-                </div>
-              </div>
             </form>
           </div>
           <div class="col-md-4 contact-info">
-            <div class="contacts-title">Contact <b>Details</b></div>
+            <div class="contacts-title h1 text-uppercase">Contact <b>Details</b></div>
             <div class="row">
               <div class="col-md-12">
                 <i class="porto-icon-phone"></i>
-                <p>0201 203 2032</p>
-                <p>0201 203 2032</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <i class="porto-icon-mobile"></i>
-                <p>201-123-3922</p>
-                <p>302-123-3928</p>
+                <p>{{contact_info.getAddress|default:'Moi Avenue 7800-896 Nairobi, Kenya'}}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <i class="porto-icon-mail-alt"></i>
-                <p>porto@gmail.com</p>
-                <p>porto@portotemplate.com</p>
+                <p>{{contact_info.email|default:'info@applemaster.co.ke'}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <i class="porto-icon-mobile"></i>
+                <p>{{contact_info.phone_number.as_e164|default:'+254793889658'}}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <i class="porto-icon-skype"></i>
-                <p>porto_skype</p>
-                <p>proto_template</p>
+                <p>https://applemaster.co.ke</p>
               </div>
             </div>
           </div>

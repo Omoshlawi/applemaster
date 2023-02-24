@@ -67,7 +67,7 @@ def cart_detail(request):
             'quantity': item['quantity'],
             'override': True
         })
-    return render(request, 'cart/detail.html', {'bread_crumb': bread_crumb})
+    return render(request, 'cart/detail-1.html', {'bread_crumb': bread_crumb, 'title': 'Shopping Cart',})
 
 
 def wish_detailed(request):
