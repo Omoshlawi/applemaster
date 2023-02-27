@@ -181,7 +181,8 @@
             class="porto-carousel owl-carousel mb-0 nav-pos-inside nav-style-4 show-nav-hover">
             {% for slider in sliders %}
             <div class="porto-ibanner" style="">
-              <img src="{% if slider.image %}{{ slider.image.url }}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_banner1.jpg{% endif %}" />
+              <img
+                src="{% if slider.image %}{{ slider.image.url }}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_banner1.jpg{% endif %}" />
               <div class="porto-ibanner-desc no-padding d-flex">
                 <div class="container">
                   <div class="porto-ibanner-container">
@@ -189,14 +190,17 @@
                       <h2 style="font-size: 2.5em; color: #777777; line-height: 1; font-weight: 400;"
                         class="vc_custom_heading custom-font4 mb-3 align-left">{{slider.title}}</h2>
                       <h3 style="font-size: 2.5em; line-height: 1;"
-                        class="vc_custom_heading mb-0 ls-185 align-left text-uppercase">{{ slider.description|truncatechars:20 }}</h3>
-                      <h3 style="font-size: 5.625em; line-height: 1;" class="vc_custom_heading mb-4 align-left">Best Shop.</h3>
+                        class="vc_custom_heading mb-0 ls-185 align-left text-uppercase">{{
+                        slider.description|truncatechars:20 }}</h3>
+                      <h3 style="font-size: 5.625em; line-height: 1;" class="vc_custom_heading mb-4 align-left">Best
+                        Shop.</h3>
                       <!-- <h5 style="font-size: 1.125em;"
                         class="vc_custom_heading pull-left p-t-sm mr-3 align-left text-uppercase">Starting At</h5> -->
                       <!-- <h5 style="font-size: 2.25em; line-height: 1;"
                         class="vc_custom_heading coupon-sale-text mb-4 align-left"><sup>$</sup>199<sup>99</sup>
                       </h5> -->
-                      <div class="btn-container mb-0 mt-2 text-left"><a href="{% url 'shop:product_list' %}" class="btn btn-modern btn-xl btn-dark">Shop
+                      <div class="btn-container mb-0 mt-2 text-left"><a href="{% url 'shop:product_list' %}"
+                          class="btn btn-modern btn-xl btn-dark">Shop
                           Now</a></div>
                     </div>
                   </div>
@@ -276,7 +280,8 @@
                         <span class="thumb-info-wrap">
                           <span class="thumb-info-title">
                             <h3 class="sub-title thumb-info-inner">{{ category.name }}</h3>
-                            <span class="thumb-info-type"> <mark class="count">{{category.products.all | length}}</mark> Products </span>
+                            <span class="thumb-info-type"> <mark class="count">{{category.products.all | length}}</mark>
+                              Products </span>
                           </span>
                         </span>
                       </span>
@@ -355,7 +360,8 @@
           <div class="col-sm-6 col-md-6 col-lg-3 col-12">
             <div class="wpb_wrapper vc_column-inner">
               <div class="porto-ibanner porto-ibe-boxshadow">
-                <img src="{% if tag.image %}{{tag.image.url}}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads1.jpg{% endif %}"
+                <img
+                  src="{% if tag.image %}{{tag.image.url}}{% else %}/static/pub/media/wysiwyg/smartwave/porto/homepage/03/shop3_home_ads1.jpg{% endif %}"
                   class="porto-ibanner-img" />
                 <div class="porto-ibanner-desc no-padding d-flex">
                   <div class="porto-ibanner-layer" style="left: 10%; bottom: 8%;">
@@ -363,8 +369,9 @@
                       {{ tag }}</h3>
                     <p style="font-size: 0.9375em; color: #777777; line-height: 1.4;"
                       class="vc_custom_heading mb-3 align-left">{{ tag.description|truncatechars:50 }}</p>
-                    <div class="btn-container mb-0 d-inline-block"><a href="{% url 'shop:product_list' %}" class="btn btn-modern btn-sm btn-dark">Shop Now
-                    </a></div>
+                    <div class="btn-container mb-0 d-inline-block"><a href="{% url 'shop:product_list' %}"
+                        class="btn btn-modern btn-sm btn-dark">Shop Now
+                      </a></div>
                   </div>
                 </div>
               </div>
@@ -375,7 +382,7 @@
         {% endif %}
       </div>
     </div>
-    
+
     <div class="porto-inner-container" style="padding: 65px 0 30px;">
       {% if featured %}
       <div class="container">
@@ -395,22 +402,30 @@
                     <a href="{{ f.get_absolute_url }}"
                       tabindex="-1">
                       <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="{% if f.image %}{{ f.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        data-src="{{ f.image.url }}"
                         width="350" height="350" alt=""
-                        src="{% if f.image %}{{ f.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        src="{{ f.image.url }}"
                         style="display: block;">
                     </a>
                     <div class="product-item-inner">
                       <div class="product actions product-item-actions">
-                        <a href="{{ f.get_absolute_url }}" class="action tocart actions-secondary" title="Add to Cart"
-                          aria-label="Add to Cart"
-                          data-action="add-to-cart" role="button">
-                          <span>Add to Cart</span>
-                        </a>
+                        <div class="actions-primary">
+                          <a href="{{ f.get_absolute_url }}">
+                            <button type="button"
+                              title="Add to Cart" class="action tocart primary">
+                              <span>Add to Cart</span>
+                            </button>
+                          </a>
+                        </div>
                         <a href="{% url 'cart:wish_add' f.id %}" class="action towishlist actions-secondary" title="Add to Wish List"
                           aria-label="Add to Wish List"
                           data-action="add-to-wishlist" role="button">
                           <span>Add to Wish List</span>
+                        </a>
+                        <a href="{% url 'cart:wish_add' f.id %}" class="action tocompare actions-secondary" title="Add to Wish List"
+                          aria-label="Add to Compare"
+                          role="button">
+                          <span>Add to Wishlist</span>
                         </a>
                       </div>
                     </div>
@@ -422,23 +437,24 @@
                   <div class="product details product-item-details">
                     <strong class="product name product-item-name">
                       <a class="product-item-link"
-                        href="{{ f.get_absolute_url }}">
-                        {{ f.name }} </a>
+                        href="{{ f.get_absolute_url }}">{{ f.name }}</a>
                     </strong>
                     <div class="product-reviews-summary short">
                       <div class="rating-summary">
                         <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
+                        <div class="rating-result" title="100%">
+                          <span style="width:100"><span>100%</span></span>
                         </div>
                       </div>
                     </div>
+
                     <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
                       data-price-box="product-id-3382">
-                      <span class="price-container price-final_price tax weee">
+                     <span class="price-container price-final_price tax weee">
                         <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
                           class="price-wrapper "><span class="price">Ksh. {{f.price|intcomma }}</span></span>
                       </span>
+
                     </div>
                   </div>
                 </div>
@@ -545,7 +561,7 @@
       {% endif %}
       <div class="container">
         {% if recent %}
-        <h2 class="section-title slider-title mb-5"
+        <h2 class="section-title slider-title my-5"
           style="font-size: 1.125rem;line-height: 1;text-align: center;letter-spacing: -.3px;">
           <span class="inline-title">RECENT PRODUCTS</span>
           <span class="line"></span>
@@ -561,48 +577,59 @@
                     <a href="{{ r.get_absolute_url }}"
                       tabindex="-1">
                       <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="{% if r.image %}{{ r.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        data-src="{{ r.image.url }}"
                         width="350" height="350" alt=""
-                        src="{% if r.image %}{{ r.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
+                        src="{{ r.image.url }}"
                         style="display: block;">
                     </a>
                     <div class="product-item-inner">
                       <div class="product actions product-item-actions">
-                        <a href="{{ r.get_absolute_url }}" class="action tocart actions-secondary" title="Add to Cart"
-                          aria-label="Add to Cart"
-                          data-action="add-to-cart" role="button">
-                          <span>Add to Cart</span>
-                        </a>
+                        <div class="actions-primary">
+                          <a href="{{ r.get_absolute_url }}">
+                            <button type="button"
+                              title="Add to Cart" class="action tocart primary">
+                              <span>Add to Cart</span>
+                            </button>
+                          </a>
+                        </div>
                         <a href="{% url 'cart:wish_add' r.id %}" class="action towishlist actions-secondary" title="Add to Wish List"
                           aria-label="Add to Wish List"
                           data-action="add-to-wishlist" role="button">
                           <span>Add to Wish List</span>
                         </a>
+                        <a href="{% url 'cart:wish_add' r.id %}" class="action tocompare actions-secondary" title="Add to Wish List"
+                          aria-label="Add to Compare"
+                          role="button">
+                          <span>Add to Wishlist</span>
+                        </a>
                       </div>
                     </div>
+                    <!-- Dailydeal Product data -->
+                    <!-- Dailydeal Product End -->
                     <a class="weltpixel-quickview weltpixel_quickview_button_v2"
                       href="{{ r.get_absolute_url }}"><span><em class="porto-icon-eye"></em><span>View Detail</span></span></a>
                   </div>
                   <div class="product details product-item-details">
                     <strong class="product name product-item-name">
                       <a class="product-item-link"
-                        href="{{ r.get_absolute_url }}">
-                        {{ r.name }} </a>
+                        href="{{ r.get_absolute_url }}">{{ r.name }}</a>
                     </strong>
                     <div class="product-reviews-summary short">
                       <div class="rating-summary">
                         <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
+                        <div class="rating-result" title="100%">
+                          <span style="width:100"><span>100%</span></span>
                         </div>
                       </div>
                     </div>
+
                     <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
                       data-price-box="product-id-3382">
-                      <span class="price-container price-final_price tax weee">
+                     <span class="price-container price-final_price tax weee">
                         <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
                           class="price-wrapper "><span class="price">Ksh. {{r.price|intcomma }}</span></span>
                       </span>
+
                     </div>
                   </div>
                 </div>
@@ -724,7 +751,8 @@
                     SUPPORT</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Need Assistence?</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Our customer support team is here to help you whenever you need it.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Our customer
+                  support team is here to help you whenever you need it.</div>
               </div>
             </div>
           </div>
@@ -742,7 +770,8 @@
                     PAYMENT</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Safe &amp; Fast</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">We use industry-standard encryption for safe and fast payment processing.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">We use
+                  industry-standard encryption for safe and fast payment processing.</div>
               </div>
             </div>
           </div>
@@ -756,10 +785,12 @@
                   </div>
                 </div>
                 <div class="porto-sicon-header">
-                  <h3 class="porto-sicon-title" style="font-weight: 700; font-size: 1.25rem; line-height: 1.4;">7 DAY RETURN POLICY</h3>
+                  <h3 class="porto-sicon-title" style="font-weight: 700; font-size: 1.25rem; line-height: 1.4;">7 DAY
+                    RETURN POLICY</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Easy &amp; Free</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Hassle-free 7-day returns, free of charge.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Hassle-free
+                  7-day returns, free of charge.</div>
               </div>
             </div>
           </div>
@@ -777,7 +808,8 @@
                     SHIPPING</h3>
                   <p style="font-weight: 600; font-size: 0.875rem; line-height: 1;">Orders Over 10k</p>
                 </div>
-                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Free shipping on orders over 10k - no extra costs.</div>
+                <div class="porto-sicon-description" style="font-size: 0.8125rem; line-height: 1.5rem;">Free shipping on
+                  orders over 10k - no extra costs.</div>
               </div>
             </div>
           </div>
@@ -788,7 +820,7 @@
           }
         </style>
       </div>
-      
+
     </div>
   </div>
 </div>
