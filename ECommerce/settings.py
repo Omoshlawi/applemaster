@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.humanize',
 
-    # 'phone_field',
+    # allauth,
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
