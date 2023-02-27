@@ -116,7 +116,7 @@ class ProductsView(View):
     def render(self):
         return render(
             self.request,
-            'shop/product/list.html',
+            'shop/product/list-1.html',
             {
                 'category': self.category,
                 # 'products': self.products,
@@ -126,7 +126,8 @@ class ProductsView(View):
                 'tags': self.tags,
                 'tag_filter': self.tag_filters,
                 'category_filter': self.category_filter,
-                'sort_by': self.sort_filter
+                'sort_by': self.sort_filter,
+                'title': 'Shop' if not self.category else self.category.name
             }
         )
 
@@ -235,14 +236,14 @@ def product_list(request, category_slug=None):
 
     return render(
         request,
-        'shop/product/list.html',
+        'shop/product/list-1.html',
         {
             'category': category,
-            # 'products': products,
             'products': products_paged,
             'nav': nav,
             'bread_crumb': bread_crumb,
-            'tags': tags
+            'tags': tags,
+            'title': 'Shop',
         }
     )
 
@@ -273,11 +274,13 @@ def product_detail(request, product_id, slug):
     form = ReviewForm()
     return render(
         request,
-        'shop/product/detail.html',
+        'shop/product/detail-1.html',
         {
             'product': product,
             'cart_product_form': cart_product_form,
             "form": form,
-            "bread_crumb": bread_crumb
+            "bread_crumb": bread_crumb,
+            'title': product.name,
+            'category': product.category,
         }
     )

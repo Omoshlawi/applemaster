@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.shortcuts import reverse
 from django.views.decorators.http import require_POST
+from account.models import Team
 
 from root.breadcrumb import BreadCrumb
 from root.forms import ContactForm
@@ -32,7 +33,7 @@ def index(request):
     brands = None
     tags = Tag.objects.all()
     if len(tags) > 2:
-        tags = tags[:2]
+        tags = tags[:4]
     for obj in display:
         if obj.category_name == "Sliders":
             sliders = get_object_or_404(FrontDisplayCategory, category_name="Sliders").displays.all()
@@ -40,7 +41,7 @@ def index(request):
             brands = get_object_or_404(FrontDisplayCategory, category_name="Brands").displays.all()
     return render(
         request,
-        "index.html",
+        "index-1.html",
         {
             "categories": categories,
             "featured": featured,
@@ -49,7 +50,8 @@ def index(request):
             "sliders": sliders,
             "brands": brands,
             'tags': tags,
-            "bread_crumb": bread_crumb
+            "bread_crumb": bread_crumb,
+            'title': 'home',
         }
     )
 
@@ -72,7 +74,13 @@ def about(request):
         BreadCrumb("About", reverse('root:about'), True),
     ]
     nav = {"about": 'active'}
-    return render(request, "about.html", {'nav': nav, "bread_crumb": bread_crumb})
+    context= {
+        'nav': nav, 
+        "bread_crumb": bread_crumb,
+        'title': 'About Us',
+        'teams': Team.objects.all(),
+    }
+    return render(request, "about-1.html", context)
 
 
 def contact(request):
@@ -82,15 +90,18 @@ def contact(request):
     ]
     nav = {"contact": 'active'}
     form = ContactForm()
-    return render(request, "contact.html", {"form": form, 'nav': nav, "bread_crumb": bread_crumb})
+    return render(request, "contact-1.html", 
+        {
+            "form": form, 
+            'nav': nav, 
+            "bread_crumb": bread_crumb,
+            'title': 'Contact Us',
+        }
+    )
 
+def advanced_search(request):
+    context={
+        'title':'Advanced Search',
+    }
+    return render(request, 'search.html', context)
 
-@login_required
-def dashboard(request):
-    # TODO removed for now, to be implemented later
-    bread_crumb = [
-        BreadCrumb("Home", "/"),
-        BreadCrumb("Dashboard", reverse('root:dashboard'), True),
-    ]
-    nav = {"dashboard": "active"}
-    return render(request, "dashboard/dashboard.html", {'nav': nav, "bread_crumb": bread_crumb})

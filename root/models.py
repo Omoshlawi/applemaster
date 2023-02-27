@@ -5,7 +5,6 @@ from django.db import models
 from django_resized import ResizedImageField
 from phonenumber_field.modelfields import PhoneNumberField
 
-
 # Create your models here.
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
@@ -83,3 +82,4 @@ class SubSubscribers(models.Model):
         ordering = ('-created',)
         verbose_name = 'Subscriber'
         verbose_name_plural = 'Subscribers'
+

@@ -67,7 +67,7 @@ def cart_detail(request):
             'quantity': item['quantity'],
             'override': True
         })
-    return render(request, 'cart/detail.html', {'bread_crumb': bread_crumb})
+    return render(request, 'cart/detail-1.html', {'bread_crumb': bread_crumb, 'title': 'Shopping Cart',})
 
 
 def wish_detailed(request):
@@ -77,7 +77,7 @@ def wish_detailed(request):
         BreadCrumb("Wish list", reverse("cart:wish_detail"), True),
     ]
 
-    return render(request, 'cart/wish_detailed.html',
+    return render(request, 'cart/wish_detailed-1.html',
                   {'hidden_form': CartAddSingleProduct(), "bread_crumb": bread_crumb})
 
 

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-1.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block title %}Edit your profile{% endblock %}
@@ -39,18 +39,22 @@
 
                                     {% csrf_token %}
                                     <div class="row">
+                                        <div class="col-lg-4">
                                         {{residential_info_form | crispy }}
+                                        </div>
+                                        <div class="col-lg-4">
                                         {{user_form | crispy}}
+                                        </div>
+                                        <div class="col-lg-4">
                                         {{profile_form | crispy}}
+                                        </div>
                                         <div class="mt-2 ml-2">
                                             <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                         </div>
-
                                     </div>
                                     <!-- /Account -->
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>

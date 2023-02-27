@@ -33,7 +33,7 @@ def sign_up_user(request):
     return render(
         request,
         'account/register.html',
-        {"form": form}
+        {"form": form, 'title': 'Sign Up'}
     )
 
 
@@ -79,9 +79,12 @@ def edit(request):
     return render(
         request,
         'account/profile.html',
-        {'user_form': user_form,
-         'profile_form': profile_form,
-         'status': 'enabled'}
+        {
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'status': 'enabled',
+            'title': 'Edit Profile'
+         }
     )
 
 @login_required
@@ -109,10 +112,16 @@ def profile(request):
             user_form.save()
             # image_form.save()
             messages.success(request, "Profile updated successfully")
-    return render(request, 'account/my_profile.html',
-                  {'residential_info_form': residential_info_form, 'user_form': user_form,
-                   'profile_form': profile_form, 'bread_crumb': bread_crumb, 'image_form': image_form})
+    return render(
+        request, 
+        'account/my_profile.html',
+        {
+            'residential_info_form': residential_info_form, 
+            'user_form': user_form,
+            'profile_form': profile_form, 
+            'bread_crumb': bread_crumb, 
+            'image_form': image_form,
+        }
+    )
 
 
-def dashboard(request):
-    return render(request, 'dashboard/dashboard.html')

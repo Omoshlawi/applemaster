@@ -28,7 +28,6 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/" class="nav-item nav-link {{nav.home}}">Home</a>
                         <!-- TODO work on dashboard later -->
-                        <!--                         <a href="{% url 'root:dashboard' %}" class="nav-item nav-link {{nav.dashboard}}">Dashboard</a> -->
                         <a href="{% url 'shop:product_list' %}" class="nav-item nav-link {{nav.shop}}">Shop</a>
                         <a href="{% url 'root:about' %}" class="nav-item nav-link {{nav.about}} ">Shop Detail</a>
                         {% if request.user.is_staff %}
