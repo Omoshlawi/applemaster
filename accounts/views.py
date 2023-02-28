@@ -28,7 +28,7 @@ def sign_up_user(request):
         form = RegisterForm()
     return render(
         request,
-        'account/register.html',
+        'accounts/register.html',
         {"form": form, 'title': 'Sign Up'}
     )
 
@@ -42,7 +42,7 @@ def view(request):
     )
     return render(
         request,
-        'account/profile.html',
+        'accounts/profile.html',
         {'user_form': user_form,
          'profile_form': profile_form,
          'status': 'disabled'
@@ -74,7 +74,7 @@ def edit(request):
         )
     return render(
         request,
-        'account/profile.html',
+        'accounts/profile.html',
         {
             'user_form': user_form,
             'profile_form': profile_form,
@@ -110,7 +110,7 @@ def profile(request):
             messages.success(request, "Profile updated successfully")
     return render(
         request, 
-        'account/my_profile.html',
+        'accounts/my_profile.html',
         {
             'residential_info_form': residential_info_form, 
             'user_form': user_form,
