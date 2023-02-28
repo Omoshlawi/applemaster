@@ -2,15 +2,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
-
 from root.breadcrumb import BreadCrumb
 from .forms import RegisterForm, UserEditFormView, ProfileEditFormView, UserEditForm, ProfileEditForm, UserProfileInfo, \
     ResidentialInfoForm, ChangeProfilePicForm
-
 
 def sign_up_user(request):
     if request.user.is_authenticated:

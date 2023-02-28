@@ -1,22 +1,15 @@
-import datetime
 import os
 from django_resized import ResizedImageField
-from PIL import Image
-
 from django.contrib.auth.models import User
 from django.db import models
-
-# Create your models here.
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
-
 
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
     return os.path.join('uploads', "profile", filename)
-
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')
@@ -31,7 +24,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}\'s Profile...'
-
 
 class ResidentialInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='residentialinfo')
@@ -51,18 +43,15 @@ class ResidentialInfo(models.Model):
     def get_address(self):
         return f"{self.address} {self.zip_code} {self.city}, {self.country}"
 
-
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
-
 @receiver(post_save, sender=User)
 def create_residential_ifo(sender, instance, created, **kwargd):
     if created:
         ResidentialInfo.objects.create(user=instance)
-
 
 class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
