@@ -60,7 +60,7 @@ class FrontDisplayCategory(models.Model):
 class FrontDisplay(models.Model):
     category = models.ForeignKey(FrontDisplayCategory, on_delete=models.CASCADE, related_name="displays")
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    description = models.CharField(null=True, blank=True, max_length=150)
     image = models.ImageField(
         upload_to=content_file_name,
         blank=False,

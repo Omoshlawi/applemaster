@@ -68,7 +68,7 @@ class Category(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    description = models.TextField()
+    description = models.CharField(max_length=150, null=True, blank=True)
     image = models.ImageField(
         upload_to=tag_file_name,
         blank=False,
@@ -103,9 +103,6 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)
         index_together = (('id', 'slug'),)
-        # specify an index for the id and slug fields together.You define this index because
-        # you plan to query products by both id and slug.Both fields are indexed together
-        # to improve performance for queries that utilize the two fields.
 
     def __str__(self):
         return self.name

@@ -26,9 +26,9 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'available']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ProductSecondaryImagesInline]
-    
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'rating', 'created', 'updated', 'review']
     list_filter = ['user', 'created', 'updated', 'rating', 'product']
-    list_editable = ['rating', 'product']
+    # list_editable = ['rating', 'product']

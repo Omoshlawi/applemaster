@@ -23,6 +23,7 @@
                         <span>Home</span>
                       </a>
                     </li>
+                    {% if categories %}
                     <li class="ui-menu-item level0 staticwidth parent">
                       <div class="open-children-toggle"></div>
                       <a href="#" class="level-top">
@@ -56,9 +57,11 @@
                         </div>
                       </div>
                     </li>
+                    {% endif %}
+                    {% if products %}
                     <li class="ui-menu-item level0 staticwidth parent">
                       <div class="open-children-toggle"></div>
-                      <a href="porto-evolution-headset-default.html/index.html"
+                      <a href="#"
                         class="level-top"><span>Products</span></a>
                       <div class="level0 submenu" style="width: 580px;">
                         <div class="container">
@@ -66,31 +69,13 @@
                             <ul class="subchildmenu col-md-8 mega-columns columns2">
                               <li class="ui-menu-item level1 parent">
                                 <div class="open-children-toggle"></div>
-                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Product
-                                    Pages</span></a>
+                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Recent Products</span></a>
                                 <ul class="subchildmenu">
+                                  {% for product in products %}
                                   <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/3439/s/women-casual-bag-spring/category/461/"><span>Simple
-                                        Product</span></a>
+                                    <a href="{{ product.get_absolute_url }}"><span>{{ product.name }}</span></a>
                                   </li>
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/catalog/product/view/id/3438/s/basketball-sports-blue-shoes/category/461/"><span>Configurable
-                                        Product</span></a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class="ui-menu-item level1 parent">
-                                <div class="open-children-toggle"></div>
-                                <a href="javascript:void(0)" style="pointer-events: none;"><span>Product
-                                    Layout</span></a>
-                                <ul class="subchildmenu">
-                                  <li class="ui-menu-item level2">
-                                    <a
-                                      href="https://www.portotheme.com/magento2/porto/demo4_en/porto-evolution-headset-default.html"><span>Default
-                                        Layout</span></a>
-                                  </li>
+                                  {% endfor %}
                                 </ul>
                               </li>
                             </ul>
@@ -103,6 +88,7 @@
                         </div>
                       </div>
                     </li>
+                    {% endif %}
                     <li class="ui-menu-item level0 classic parent">
                       <div class="open-children-toggle"></div>
                       <a href="javascript:void(0)" class="level-top"><span>Pages</span></a>

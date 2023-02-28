@@ -21,3 +21,4 @@ class TeamAdmin(admin.ModelAdmin):
     list_filter = ('is_active',)
     search_fields = ('user__username', 'user__email', 'user__first_name', 'user__last_name')
     raw_id_fields = ('user',)
+

@@ -1,4 +1,4 @@
-from .models import Category
+from .models import Category, Product
 from .forms import SearchForm
 
 def product_category(request):
@@ -6,3 +6,6 @@ def product_category(request):
 
 def search_form(request):
     return {'search_form': SearchForm()}
+
+def products(request):
+    return {'products':Product.objects.all()[:5]}
