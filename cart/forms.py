@@ -1,6 +1,6 @@
 from django import forms
 
-from account.models import ResidentialInfo
+from accounts.models import ResidentialInfo
 
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
 

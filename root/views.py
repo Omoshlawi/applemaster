@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.shortcuts import reverse
 from django.views.decorators.http import require_POST
-from account.models import Team
+from accounts.models import Team
 
 from root.breadcrumb import BreadCrumb
 from root.forms import ContactForm

@@ -8,7 +8,7 @@ from root.breadcrumb import BreadCrumb
 from .cart import Cart
 from .cart_wish import CartWish
 from .forms import CartAddProductForm, CreditCardForm, CartAddSingleProduct
-from account.forms import ResidentialInfoForm, UserEditForm, UserProfileInfo
+from accounts.forms import ResidentialInfoForm, UserEditForm, UserProfileInfo
 from shop.models import Product
 from .wish_list import WishList
 

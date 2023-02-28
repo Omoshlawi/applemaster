@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountsConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
@@ -54,9 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     # allauth,
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [

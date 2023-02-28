@@ -20,13 +20,14 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
+    path('accounts/', include('accounts.urls')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('order/', include('orders.urls', namespace='order')),
     path('', include('root.urls', namespace='root')),
     path('api/', include('api.urls', namespace='api')),
     path('blogs/', include('blogs.urls', namespace='blog')),
+    path('account/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
