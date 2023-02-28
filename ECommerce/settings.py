@@ -30,6 +30,10 @@ ALLOWED_HOSTS = [
     'www.applemaster.co.ke',
 ]
 
+ADMINS = [
+    ('Jeff O.', 'o.jeff3.a@gmail.com'),
+    ('Laurent O.', 'lawiomosh3@gmail.com'),
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -119,6 +123,7 @@ else:
             'PORT': '',
         }
     }
+
 SITE_ID = 1
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -166,22 +171,14 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'lim111.truehost.cloud'
-# EMAIL_HOST = 'mail.applemaster.co.ke'
+EMAIL_HOST = 'mail.applemaster.co.ke'
 EMAIL_HOST_USER = 'info@applemaster.co.ke'
 EMAIL_HOST_PASSWORD = 'Lawiomosh3'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'info@applemaster.co.ke'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# LOGIN_REDIRECT_URL = 'view_profile'
-LOGIN_REDIRECT_URL = 'profile'
-
-# LOGIN_URL = 'login'
-LOGIN_URL = 'sign_in'
-LOGOUT_URL = 'sig_out'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
@@ -191,11 +188,14 @@ WISH_ITEMS = 'wish_items'
 CART_ITEMS = 'cart_items'
 # WISH_LIST_SESSION_ID = 'wishlist'
 
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'accounts.authentication.EmailAuthBackend',
+# ]
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
 #         'rest_framework.permissions.jangoModelPermissionsOrAnonReadOnly'
@@ -210,7 +210,7 @@ CONSUMER_KEY = 'consumer key'
 ACCOUNT_TYPE = "TILL"
 SHORT_CODE = 12355
 PASSKEY = ""
-BUSINESS_NAME = "E-SHOP"
+BUSINESS_NAME = "Applemaster Kenya"
 META_SESSION_ID = 'extras_session_info'
 
 CSRF_TRUSTED_ORIGINS = [
@@ -218,3 +218,28 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 #STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_MAX_LENGTH = 200
+ACCOUNT_MAX_EMAIL_ADDRESSES = 3
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_PRESERVE_USERNAME_CASING = False
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_USERNAME_BLACKLIST = ['admin']
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_USERNAME_REQUIRED = True
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Applemaster Kenya - '
