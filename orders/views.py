@@ -1,22 +1,18 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import JsonResponse, Http404
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.shortcuts import reverse
-# Create your views here.
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from cart.cart import Cart
 from cart.cart_wish import CartWish
 from orders.models import OrderItem, Order, PaymentDetails, Payment
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import permission_required
-from python_daraja import payment
 from django.utils.timezone import datetime
-from orders.payment.account_type import AccountType
 from orders.payment.payment import MpesaClient
 from root.breadcrumb import BreadCrumb
+# Create your views here.
 
 
 def order_create(request):

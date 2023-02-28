@@ -1,7 +1,5 @@
 from django.contrib import admin
 from .models import ContactInfo, FrontDisplayCategory, FrontDisplay, SubSubscribers
-
-
 # Register your models here.
 
 @admin.register(ContactInfo)

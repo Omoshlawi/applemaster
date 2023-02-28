@@ -39,24 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
-
-    'blogs.apps.BlogsConfig',
-    #'whitenoise.runserver_nostatic',
+    'django.contrib.humanize',
     'django.contrib.staticfiles',
-    'crispy_forms',
+
+    #Local Apps
+    'blogs.apps.BlogsConfig',
     'accounts.apps.AccountsConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'root.apps.RootConfig',
     'api.apps.ApiConfig',
-    'rest_framework',
-    'django.contrib.humanize',
 
-    # allauth,
+    #Third Party Apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    #'whitenoise.runserver_nostatic',
+    'rest_framework',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

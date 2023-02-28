@@ -1,16 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import reverse
-# Create your views here.
 from django.views.decorators.http import require_POST
-
 from root.breadcrumb import BreadCrumb
-from .cart import Cart
 from .cart_wish import CartWish
 from .forms import CartAddProductForm, CreditCardForm, CartAddSingleProduct
 from accounts.forms import ResidentialInfoForm, UserEditForm, UserProfileInfo
 from shop.models import Product
-from .wish_list import WishList
 
 
 @require_POST

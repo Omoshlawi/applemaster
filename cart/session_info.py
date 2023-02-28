@@ -1,6 +1,5 @@
 from django.conf import settings
 
-
 class SessionInfo:
     def __init__(self, request):
         self.session = request.session

@@ -1,13 +1,10 @@
-from django.contrib import admin
-
-# Register your models here.
-from .models import OrderItem, Order, Payment, PaymentDetails
-
 import csv
 import datetime
 from django.http import HttpResponse
+from django.contrib import admin
+from .models import OrderItem, Order, Payment, PaymentDetails
 
-
+# Register your models here.
 def export_to_csv(modeladmin, request, queryset):
     opts = modeladmin.model._meta
     content_disposition = 'attachment; filename={opts.verbose_name}.csv'

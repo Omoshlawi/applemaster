@@ -1,9 +1,6 @@
 from django import forms
 
-from accounts.models import ResidentialInfo
-
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
-
 
 class CartAddProductForm(forms.Form):
     # quantity = forms.TypedChoiceField(

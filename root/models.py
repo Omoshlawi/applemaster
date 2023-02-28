@@ -1,9 +1,7 @@
 import os
-
 from django.db import models
-# from phone_field.models import PhoneField
-from django_resized import ResizedImageField
 from phonenumber_field.modelfields import PhoneNumberField
+# from phone_field.models import PhoneField
 
 # Create your models here.
 def content_file_name(instance, filename):

@@ -1,11 +1,8 @@
 import os
 from decimal import Decimal
-
 from django.contrib.auth.models import User
 from django.db import models
-
 from django.urls import reverse
-from django_resized import ResizedImageField
 
 CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category")
 PRODUCTS_IMAGES_PATH = os.path.join("uploads", "shop", "products", "primary")
@@ -18,8 +15,6 @@ RATING_CHOICES = [
     (4, 4),
     (5, 5)
 ]
-
-
 # Create your models here.
 
 def category_file_name(instance, filename):

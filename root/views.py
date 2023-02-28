@@ -1,19 +1,16 @@
 from datetime import datetime, timedelta
-
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
-# Create your views here.
 from django.shortcuts import reverse
 from django.views.decorators.http import require_POST
 from accounts.models import Team
-
 from root.breadcrumb import BreadCrumb
 from root.forms import ContactForm
 from root.models import FrontDisplayCategory, SubSubscribers
 from shop.models import Category, Product, Tag
+# Create your views here.
 
 
 def index(request):

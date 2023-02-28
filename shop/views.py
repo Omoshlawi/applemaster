@@ -3,15 +3,14 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import reverse
-# Create your views here.
 from django.views import View
 from django.views.decorators.http import require_POST
-
 from cart.forms import CartAddProductForm
 from cart.session_info import SessionInfo
 from root.breadcrumb import BreadCrumb
 from .forms import ReviewForm, SearchForm
 from .models import Category, Product, Tag
+# Create your views here.
 
 
 @require_POST
