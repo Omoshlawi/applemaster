@@ -1,0 +1,643 @@
+{% extends 'base-1.html' %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block head_script %}
+{% endblock %}
+{% block meta %}
+{% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column main">
+        <div>
+
+        </div>
+        <div class="product media"><a id="gallery-prev-area" tabindex="-1"></a>
+            <div class="action-skip-wrapper"><a class="action skip gallery-next-area" href="#gallery-next-area">
+                    <span>
+                        Skip to the end of the images gallery </span>
+                </a>
+            </div>
+            <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+                <img alt="main product photo" class="gallery-placeholder__image"
+                    src="{% if product.image %}{{ product.image.url }}{% endif %}" />
+                <div data-role="loader" class="loading-mask">
+
+                </div>
+            </div>
+            <style>
+                .fotorama__wrap {
+                    margin-bottom: -8px;
+                }
+            </style>
+            <!--Fix for jumping content. Loader must be the same size as gallery.-->
+            <script>
+                var config = {
+                    "width": 500,
+                    "thumbheight": 120,
+                    "navtype": "slides",
+                    "height": 500
+                },
+                    thumbBarHeight = 0,
+                    loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+                if (config.navtype === 'horizontal') {
+                    thumbBarHeight = config.thumbheight;
+                }
+
+                loader.style.paddingBottom = (config.height / config.width * 100) + "%";
+            </script>
+            <script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": {"fullscreenzoom":"5","top":"","left":"","width":"","height":"","eventType":"hover","enabled":false},
+                "data": [{"thumb":"https:\/\/www.portotheme.com\/magento2\/porto\/pub\/media\/catalog\/product\/cache\/7a6c96e753607965a20a208f62b1230b\/s\/h\/shop34_product14.jpeg","img":"https:\/\/www.portotheme.com\/magento2\/porto\/pub\/media\/catalog\/product\/cache\/1ab48d32e9bd277ac1c930b6b5f97eee\/s\/h\/shop34_product14.jpeg","full":"https:\/\/www.portotheme.com\/magento2\/porto\/pub\/media\/catalog\/product\/cache\/962c719335c65df90fc159e4650fe8ca\/s\/h\/shop34_product14.jpeg","caption":"Belt accessories","position":"2","isMain":true,"type":"image","videoUrl":null}],
+                "options": {
+                    "nav": "thumbs",
+                                            "loop": 1,
+                                                                "keyboard": 1,
+                                                                "arrows": 1,
+                                                                "allowfullscreen": 1,
+                                                            "width": 500,
+                    "thumbwidth": 100,
+                    "thumbheight": 100,
+                                        "height": 500,
+                                        "thumbmargin": 8,
+                                            "transitionduration": 500,
+                                        "transition": "slide",
+                                            "navarrows": 1,
+                                        "navtype": "slides",
+                    "navdir": "horizontal"
+                },
+                "fullscreen": {
+                    "nav": "thumbs",
+                                            "loop": 1,
+                                        "navdir": "horizontal",
+                                        "navtype": "slides",
+                                                                                    "transitionduration": 500,
+                                        "transition": "dissolve"
+                },
+                "breakpoints": {"mobile":{"conditions":{"max-width":"991px"},"options":{"options":{"nav":"thumbs","navdir":"horizontal"}}}}            }
+        }
+    }
+</script>
+            <script type="text/javascript">
+                require([
+                    'jquery',
+                    'Magento_Catalog/js/jquery.zoom.min'
+                ], function ($) {
+                    var loaded = false;
+                    $(document).on('fotorama:load', function (e, fotorama, extra) {
+                        if ($('.loading-mask').length > 0)
+                            $('.loading-mask').remove();
+                    });
+                    $('.product.media .gallery-placeholder').bind("DOMSubtreeModified", function () {
+                        $('.product.media .fotorama').on('fotorama:ready', function (e, fotorama, extra) {
+                            loaded = false;
+                            $('.product.media .fotorama').on('fotorama:load', function (e, fotorama, extra) {
+                                if (!loaded) {
+                                    $('.product.media .fotorama__stage .fotorama__loaded--img').trigger('zoom.destroy');
+                                    $('.product.media .fotorama__stage .fotorama__active').zoom({
+                                        touch: false
+                                    });
+                                    loaded = true;
+                                }
+                            });
+                            $('.product.media .fotorama').on('fotorama:showend', function (e, fotorama, extra) {
+                                $('.product.media .fotorama__stage .fotorama__active').zoom({
+                                    touch: false
+                                });
+                            });
+                            $('.fotorama').off('fotorama:fullscreenenter').on('fotorama:fullscreenenter', function (e, fotorama, extra) {
+                                $('.product.media .fotorama__stage .fotorama__loaded--img').trigger('zoom.destroy');
+                                $('img.zoomImg').remove();
+                            });
+                            $('.fotorama').off('fotorama:fullscreenexit').on('fotorama:fullscreenexit', function (e, fotorama, extra) {
+                                $('.product.media .fotorama__stage .fotorama__loaded--img').trigger('zoom.destroy');
+                                $('img.zoomImg').remove();
+                                $('img.fotorama__img').not('.fotorama__img--full').each(function () {
+                                    $(this).after($(this).parent().children("img.fotorama__img--full"));
+                                });
+                                $('.product.media .fotorama__stage .fotorama__active').zoom({
+                                    touch: false
+                                });
+                                $('.product.media .fotorama').off('fotorama:showend').on('fotorama:showend', function (e, fotorama, extra) {
+                                    $('.product.media .fotorama__stage .fotorama__loaded--img').trigger('zoom.destroy');
+                                    $('.product.media .fotorama__stage .fotorama__active').zoom({
+                                        touch: false
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            </script>
+            <script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "Magento_ProductVideo/js/fotorama-add-video-events": {
+                "videoData": [{"mediaType":"image","videoUrl":null,"isBase":true}],
+                "videoSettings": [{"playIfBase":"0","showRelated":"0","videoAutoRestart":"0"}],
+                "optionsVideoData": []            }
+        }
+    }
+</script>
+            <div class="action-skip-wrapper"><a class="action skip gallery-prev-area" href="#gallery-prev-area">
+                    <span>
+                        Skip to the beginning of the images gallery </span>
+                </a>
+            </div><a id="gallery-next-area" tabindex="-1"></a>
+        </div>
+        <div class="product-info-main">
+            <div class="page-title-wrapper&#x20;product">
+                <h1 class="page-title">
+                    <span class="base" data-ui-id="page-title-wrapper" itemprop="name">{{ product.name }}</span>
+                </h1>
+            </div>
+            <div class="product-reviews-summary empty">
+                <div class="reviews-actions">
+                    <a class="action add" href="">
+                        Be the first to review this product </a>
+                </div>
+            </div>
+            <div class="product-info-price">
+                <div class="price-box price-final_price" data-role="priceBox" data-product-id="3892"
+                    data-price-box="product-id-3892">
+
+
+
+                    <span class="price-container price-final_price&#x20;tax&#x20;weee">
+                        <span id="product-price-3892" data-price-amount="19" data-price-type="finalPrice"
+                            class="price-wrapper "><span class="price">Ksh. {{ product.price |intcomma}}</span></span>
+                        <meta itemprop="price" content="19" />
+                        <meta itemprop="priceCurrency" content="KSH" />
+                    </span>
+
+                </div>
+            </div>
+            <div class="product attribute overview">
+                <div class="value" itemprop="description">{{ product.description|truncatechars:200 }}</div>
+            </div>
+            <div class="product-info-stock-sku">
+                <div class="stock available" title="Availability">
+                    <span class="label">Availability:</span>
+                    <span>In stock</span>
+                </div>
+            </div>
+
+            <div class="product-add-form">
+                <form data-product-sku="AS5550" action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="box-tocart">
+                        <div class="fieldset">
+                            <div class="field qty">
+                                <label class="label" for="qty"><span>Qty:</span></label>
+                                <div class="control">
+                                    {{ cart_product_form.quantity }}
+                                    <div class="qty-changer">
+                                        <a href="javascript:void(0)" class="qty-inc"><i
+                                                class="porto-icon-up-dir"></i></a>
+                                        <a href="javascript:void(0)" class="qty-dec"><i
+                                                class="porto-icon-down-dir"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button type="submit" title="Add to Cart" class="action primary tocart"
+                                    id="product-addtocart-button">
+                                    <span>Add to Cart</span>
+                                </button>
+
+                                <div id="instant-purchase" data-bind="scope:'instant-purchase'">
+                                    <!-- ko template: getTemplate() --><!-- /ko -->
+                                </div>
+                                <script type="text/x-magento-init">
+    {
+        "#instant-purchase": {
+            "Magento_Ui/js/core/app": {"components":{"instant-purchase":{"component":"Magento_InstantPurchase\/js\/view\/instant-purchase","config":{"template":"Magento_InstantPurchase\/instant-purchase","buttonText":"Instant Purchase","purchaseUrl":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/instantpurchase\/button\/placeOrder\/"}}}}        }
+    }
+</script>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        require([
+                            'jquery',
+                            'mage/mage',
+                            'Magento_Catalog/product/view/validation',
+                            'Magento_Catalog/js/catalog-add-to-cart'
+                        ], function ($) {
+                            'use strict';
+
+                            $('#product_addtocart_form').mage('validation', {
+                                radioCheckboxClosest: '.nested',
+                                submitHandler: function (form) {
+                                    var widget = $(form).catalogAddToCart({
+                                        bindSubmit: false
+                                    });
+
+                                    widget.catalogAddToCart('submitForm', $(form));
+
+                                    return false;
+                                }
+                            });
+                        });
+                    </script>
+                    <script type="text/javascript">
+                        require([
+                            'jquery'
+                        ], function ($) {
+                            var app = {
+                                isAppleDevice: function () {
+                                    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Safari)/) != null) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                            }
+                            // Timer for LEFT time for Dailydeal product
+                            var _second = 1000;
+                            var _minute = _second * 60;
+                            var _hour = _minute * 60;
+                            var _day = _hour * 24;
+                            var timer;
+
+                            function showRemaining(currentdate) {
+                                var cid = 'countdown';
+                                var startdateid = 'fromdate';
+                                var id = 'todate';
+                                var daysid = 'countdown_days';
+                                var hoursid = 'countdown_hours';
+                                var minutesid = 'countdown_minutes';
+                                var secondsid = 'countdown_seconds';
+
+                                var enddate = new Date($('#' + id).val());
+                                var dealstartdate = new Date($('#' + startdateid).val());
+                                if (app.isAppleDevice() && $('#' + id).val() && $('#' + startdateid).val()) {
+                                    var edate = $('#' + id).val();
+                                    var edateParts = edate.substring(0, 10).split('-');
+                                    var etimePart = edate.substr(11);
+                                    enddate = edateParts[1] + '/' + edateParts[2] + '/' + edateParts[0] + ' ' + etimePart;
+                                    enddate = new Date(enddate).getTime();
+
+                                    var sdate = $('#' + startdateid).val();
+                                    var sdateParts = sdate.substring(0, 10).split('-');
+                                    var stimePart = sdate.substr(11);
+                                    dealstartdate = sdateParts[1] + '/' + sdateParts[2] + '/' + sdateParts[0] + ' ' + stimePart;
+                                    dealstartdate = new Date(dealstartdate).getTime();
+                                }
+                                // Get Current Date from magentodatetime
+
+                                var currentdate = new Date(currentdate).getTime();
+                                //Get Difference between Two dates
+                                var distance = enddate - currentdate;
+                                if (distance < 0) {
+                                    $('#expired').html("<div class='offermessage' >EXPIRED!</div>");
+                                } else if (dealstartdate > currentdate) {
+                                    $('.countdowncontainer').hide();
+                                    var msg = "<div class='offermessage' > Coming Soon..<br>Deal Start at:<br>" + $('#' + startdateid).val() + "</div>";
+                                    $('#expired').html(msg);
+                                } else {
+                                    var days = Math.floor(distance / _day);
+                                    var hours = Math.floor((distance % _day) / _hour);
+                                    var minutes = Math.floor((distance % _hour) / _minute);
+                                    var seconds = Math.floor((distance % _minute) / _second);
+                                    if (hours < 10)
+                                        hours = "0" + hours;
+                                    if (minutes < 10)
+                                        minutes = "0" + minutes;
+                                    if (seconds < 10)
+                                        seconds = "0" + seconds;
+                                    $('.countdowncontainer').show();
+                                    $('#' + daysid).html(days);
+                                    $('#' + hoursid).html(hours);
+                                    $('#' + minutesid).html(minutes);
+                                    $('#' + secondsid).html(seconds);
+                                }
+                            }
+
+                            //Set date as magentodatetime
+                            var date = new Date('2023-02-18 20:41:39');
+                            if (app.isAppleDevice()) {
+                                var mdate = '2023-02-18 20:41:39';
+                                var dateParts = mdate.substring(0, 10).split('-');
+                                var timePart = mdate.substr(11);
+                                date = dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
+                                date = new Date(date);
+                            }
+                            var day = date.getDate();
+                            var month = date.getMonth();
+                            var year = date.getFullYear();
+                            var hours = date.getHours();
+                            var minutes = "0" + date.getMinutes();
+                            var seconds = "0" + date.getSeconds();
+
+                            var fulldate = year + '/' + (month + 1) + '/' + day + ' ' + hours + ':' + minutes.substr(minutes.length - 2) + ':' + seconds.substr(seconds.length - 2);
+                            // Set Interval
+                            timer = setInterval(function () {
+                                date.setSeconds(date.getSeconds() + 1);
+                                var month = date.getMonth();
+                                var currentdatetime = date.getFullYear() + "/" + (month + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+                                showRemaining(currentdatetime);
+                            }, 1000);
+                        });
+                    </script>
+
+                </form>
+            </div>
+            <script>
+                require([
+                    'jquery',
+                    'priceBox'
+                ], function ($) {
+                    var dataPriceBoxSelector = '[data-role=priceBox]',
+                        dataProductIdSelector = '[data-product-id=3892]',
+                        priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+
+                    priceBoxes = priceBoxes.filter(function (index, elem) {
+                        return !$(elem).find('.price-from').length;
+                    });
+
+                    priceBoxes.priceBox({ 'priceConfig': { "productId": "3892", "priceFormat": { "pattern": "$%s", "precision": 2, "requiredPrecision": 2, "decimalSymbol": ".", "groupSymbol": ",", "groupLength": 3, "integerRequired": false } } });
+                });
+            </script>
+            <div class="product-social-links">
+                <div class="product-share">
+                    <div class="share-links">
+                        <a href="https://www.facebook.com/sharer.php?u={{ product.get_absolute_url }}" target="_blank"
+                            rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-facebook"
+                            data-original-title="Facebook">Facebook</a>
+                        <a href="https://twitter.com/intent/tweet?text=Belt%20accessories&amp;url={{ product.get_absolute_url }}"
+                            target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title=""
+                            class="share-twitter" data-original-title="Twitter">Twitter</a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ product.get_absolute_url }}&amp;title=Belt%20accessories"
+                            target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title=""
+                            class="share-linkedin" data-original-title="LinkedIn">LinkedIn</a>
+                        <a href="https://plus.google.com/share?url={{ product.get_absolute_url }}" target="_blank"
+                            rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-googleplus"
+                            data-original-title="Google +">Google +</a>
+                        <a href="mailto:?subject={{ product.name }}&amp;body={{ product.get_absolute_url }}"
+                            target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title=""
+                            class="share-email" data-original-title="Email">Email</a>
+                    </div>
+                </div>
+                <div class="product-addto-links" data-role="add-to-links">
+                    <a href="{% url 'cart:wish_add' product.id %}" class="action towishlist"
+                        data-action="add-to-wishlist"><span>Add to Wish List</span></a>
+                    <script type="text/x-magento-init">
+</script>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearer"></div>
+        <div class="product info detailed  ">
+            <div class="product data items " data-mage-init='{"tabs":{"openedState":"active"}}'>
+                <div class="data item title" aria-labeledby="tab-label-description-title" data-role="collapsible"
+                    id="tab-label-description">
+                    <a class="data switch" tabindex="-1" data-toggle="switch" href="#description"
+                        id="tab-label-description-title">
+                        <span>Details</span>
+                    </a>
+                </div>
+                <div class="data item content" id="description" data-role="content">
+
+                    <div class="product attribute description">
+                        <div class="value">
+                            <p>
+                                {{ product.description|linebreaks }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data item title" aria-labeledby="tab-label-reviews-title" data-role="collapsible"
+                    id="tab-label-reviews">
+                    <a class="data switch" tabindex="-1" data-toggle="switch" href="#reviews"
+                        id="tab-label-reviews-title">
+                        <span>Reviews</span>
+                    </a>
+                </div>
+                <div class="data item content" id="reviews" data-role="content">
+                    <div id="product-review-container" data-role="product-review"></div>
+                    <div class="block review-add">
+                        <div class="block-title"><strong>Write Your Own Review</strong></div>
+                        <div class="block-content">
+                            <form
+                                action="https://www.portotheme.com/magento2/porto/demo3_en/review/product/post/id/3892/"
+                                class="review-form" method="post" id="review-form" data-role="product-review-form"
+                                data-bind="scope: 'review-form'">
+                                <input name="form_key" type="hidden" value="KtomQulD7kouAAJO" />
+                                <fieldset class="fieldset review-fieldset"
+                                    data-hasrequired="&#x2A;&#x20;Required&#x20;Fields">
+                                    <legend class="legend review-legend"><span>You&#039;re
+                                            reviewing:</span><strong>{{ product.name }}</strong></legend>
+                                    <br />
+                                    <span id="input-message-box"></span>
+                                    <fieldset class="field required review-field-ratings">
+                                        <legend class="label"><span>Your Rating</span></legend><br />
+                                        <div class="control">
+                                            <div class="nested" id="product-review-table">
+                                                <div class="field choice review-field-rating">
+                                                    <label class="label"
+                                                        id="Rating_rating_label"><span>Rating</span></label>
+                                                    <div class="control review-control-vote">
+                                                        <input type="radio" name="ratings[4]" id="Rating_1" value="16"
+                                                            class="radio" data-validate="{'rating-required':true}"
+                                                            aria-labelledby="Rating_rating_label Rating_1_label" />
+                                                        <label class="rating-1" for="Rating_1" title="1&#x20;star"
+                                                            id="Rating_1_label">
+                                                            <span>1 star</span>
+                                                        </label>
+                                                        <input type="radio" name="ratings[4]" id="Rating_2" value="17"
+                                                            class="radio" data-validate="{'rating-required':true}"
+                                                            aria-labelledby="Rating_rating_label Rating_2_label" />
+                                                        <label class="rating-2" for="Rating_2" title="2&#x20;stars"
+                                                            id="Rating_2_label">
+                                                            <span>2 stars</span>
+                                                        </label>
+                                                        <input type="radio" name="ratings[4]" id="Rating_3" value="18"
+                                                            class="radio" data-validate="{'rating-required':true}"
+                                                            aria-labelledby="Rating_rating_label Rating_3_label" />
+                                                        <label class="rating-3" for="Rating_3" title="3&#x20;stars"
+                                                            id="Rating_3_label">
+                                                            <span>3 stars</span>
+                                                        </label>
+                                                        <input type="radio" name="ratings[4]" id="Rating_4" value="19"
+                                                            class="radio" data-validate="{'rating-required':true}"
+                                                            aria-labelledby="Rating_rating_label Rating_4_label" />
+                                                        <label class="rating-4" for="Rating_4" title="4&#x20;stars"
+                                                            id="Rating_4_label">
+                                                            <span>4 stars</span>
+                                                        </label>
+                                                        <input type="radio" name="ratings[4]" id="Rating_5" value="20"
+                                                            class="radio" data-validate="{'rating-required':true}"
+                                                            aria-labelledby="Rating_rating_label Rating_5_label" />
+                                                        <label class="rating-5" for="Rating_5" title="5&#x20;stars"
+                                                            id="Rating_5_label">
+                                                            <span>5 stars</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="validate_rating" class="validate-rating"
+                                                value="" />
+                                        </div>
+                                    </fieldset>
+                                    <div class="field review-field-nickname required">
+                                        <label for="nickname_field" class="label"><span>Nickname</span></label>
+                                        <div class="control">
+                                            <input type="text" name="nickname" id="nickname_field" class="input-text"
+                                                data-validate="{required:true}" data-bind="value: nickname()" />
+                                        </div>
+                                    </div>
+                                    <div class="field review-field-summary required">
+                                        <label for="summary_field" class="label"><span>Summary</span></label>
+                                        <div class="control">
+                                            <input type="text" name="title" id="summary_field" class="input-text"
+                                                data-validate="{required:true}" data-bind="value: review().title" />
+                                        </div>
+                                    </div>
+                                    <div class="field review-field-text required">
+                                        <label for="review_field" class="label"><span>Review</span></label>
+                                        <div class="control">
+                                            <textarea name="detail" id="review_field" cols="5" rows="3"
+                                                data-validate="{required:true}"
+                                                data-bind="value: review().detail"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="actions-toolbar review-form-actions">
+                                    <div class="primary actions-primary">
+                                        <button type="submit" class="action submit primary"><span>Submit
+                                                Review</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <script type="text/x-magento-init">
+</script>
+                        </div>
+                    </div>
+
+                    <script type="text/x-magento-init">
+</script>
+                </div>
+                <div class="data item title" aria-labeledby="tab-label-custom-1-title" data-role="collapsible"
+                    id="tab-label-custom-1">
+                    <a class="data switch" tabindex="-1" data-toggle="switch" href="#custom-1"
+                        id="tab-label-custom-1-title">
+                        <span>Additional information</span>
+                    </a>
+                </div>
+                <div class="data item content" id="custom-1" data-role="content">
+                    <p>{{ product.additional_info|linebreaks }}</p>
+                </div>
+            </div>
+            <script type="text/javascript">
+                require([
+                    'jquery'
+                ], function ($) {
+                    $(document).ready(function () {
+                    });
+                });
+            </script>
+        </div>
+        <div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+            <script>
+                window.authenticationPopup = { "autocomplete": "off", "customerRegisterUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/create\/", "customerForgotPasswordUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/forgotpassword\/", "baseUrl": "https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/" };
+            </script>
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <script type="text/x-magento-init">
+        {
+            "#authenticationPopup": {
+                "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"},"amazon-button":{"component":"Amazon_Login\/js\/view\/login-button-wrapper","sortOrder":"0","displayArea":"additional-login-form-fields","config":{"tooltip":"Securely login to our website using your existing Amazon details.","componentDisabled":true}}}}}}            },
+            "*": {
+                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Fwww.portotheme.com\u002Fmagento2\u002Fporto\u002Fpub\u002Fstatic\u002Fversion1627880338\u002Ffrontend\u002FSmartwave\u002Fporto\u002Fen_US\u002Fimages\u002Floader\u002D1.gif"
+            }
+        }
+    </script>
+        </div>
+        {% if product.category.products.all %}
+        <div class="block upsell porto-products title-border-bottom" data-shuffle="0">
+            <div class="section-title slider-title">
+                <strong id="block-upsell-heading" role="heading" aria-level="2">We found other products you
+                    might like!</strong>
+            </div>
+            <div class="block-content content" aria-labelledby="block-upsell-heading">
+                <div class="products wrapper grid products-grid   products-grid products-upsell">
+                    <div
+                        class="products list items product-items products-slider owl-carousel show-dots-title-right dots-style-1">
+                        {% for prod in product.category.products.all %}
+                        <div class="item product product-item">
+                            <div class="product-item-info ">
+                                <!-- category_page_grid--> <a href="{{ prod.get_absolute_url }}"
+                                    class="product photo product-item-photo" tabindex="-1">
+                                    <img class="product-image-photo default_image"
+                                        src="{% if prod.image %}{{prod.image.url}}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/p/r/product-9-2-grey_2.jpeg{% endif %}"
+                                        alt="{{ prod.name }}" />
+                                </a>
+                                <div class="product details product-item-details">
+                                    <strong class="product name product-item-name"><a class="product-item-link"
+                                            title="Black Bag" href="product-41.html">
+                                            {{ prod.name }}</a>
+                                    </strong>
+
+                                    <div class="product-reviews-summary short">
+                                        <div class="rating-summary">
+                                            <span class="label"><span>Rating:</span></span>
+                                            <div class="rating-result" title="0%">
+                                                <span style="width:0"><span>0%</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3891"
+                                        data-price-box="product-id-3891">
+
+
+
+                                        <span class="price-container price-final_price&#x20;tax&#x20;weee">
+                                            <span id="product-price-3891" data-price-amount="108"
+                                                data-price-type="finalPrice" class="price-wrapper "><span
+                                                    class="price">Ksh. {{prod.price|intcomma }}</span></span>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <script type="text/javascript">
+            require([
+                'jquery',
+                'owl.carousel/owl.carousel.min'
+            ], function ($) {
+                $(".products-upsell .owl-carousel").owlCarousel({
+                    margin: 0,
+                    nav: false,
+                    dots: true,
+                    responsive: {
+                        0: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        },
+                        992: {
+                            items: 4
+                        },
+                        1200: {
+                            items: 5
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</div>
+{% endblock %}

@@ -273,7 +273,7 @@ def product_detail(request, product_id, slug):
     form = ReviewForm()
     return render(
         request,
-        'shop/product/detail.html',
+        'shop/product/detail-1.html',
         {
             'product': product,
             'cart_product_form': cart_product_form,

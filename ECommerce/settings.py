@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     #Local Apps
     'blogs.apps.BlogsConfig',
