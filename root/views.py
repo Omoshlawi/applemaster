@@ -48,7 +48,7 @@ def index(request):
             "brands": brands,
             'tags': tags,
             "bread_crumb": bread_crumb,
-            'title': 'home',
+            'title': 'Homepage',
         }
     )
 
