@@ -174,10 +174,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.applemaster.co.ke'
+EMAIL_PORT = 465
 EMAIL_HOST_USER = 'info@applemaster.co.ke'
 EMAIL_HOST_PASSWORD = 'Lawiomosh3.'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+
 DEFAULT_FROM_EMAIL = 'info@applemaster.co.ke'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
