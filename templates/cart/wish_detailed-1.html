@@ -18,61 +18,70 @@ wish list
             <ol class="filterproducts products list items product-items row">
             {% for item in cart_wish.iter_wish %}
             {% with product=item.product %}
-              <li
-                class="item product product-item nth-child-2np1 nth-child-3np1 nth-child-4np1 nth-child-5np1 nth-child-6np1 nth-child-7np1 nth-child-8np1">
-                <div class="product-item-info type3" data-container="product-grid">
-                  <div class="product photo product-item-photo">
-                    <a href="{{ product.get_absolute_url }}"
-                      tabindex="-1">
-                      <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
-                        data-src="{% if product.image %}{{ product.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
-                        width="350" height="350" alt=""
-                        src="{% if product.image %}{{ product.image.url }}{% else %}/static/pub/media/catalog/product/cache/11458dcde882ed1dfb2833d935bf9253/s/h/shoes-16-2_2.jpeg{% endif %}"
-                        style="display: block;">
-                    </a>
-                    <div class="product-item-inner">
-                      <div class="product actions product-item-actions">
-                        <a href="{{ product.get_absolute_url }}" class="action tocart actions-secondary" title="Add to Cart"
-                          aria-label="Add to Cart"
-                          data-action="add-to-cart" role="button">
+            <li
+            class="item product product-item nth-child-2np1 nth-child-3np1 nth-child-4np1 nth-child-5np1 nth-child-6np1 nth-child-7np1 nth-child-8np1">
+            <div class="product-item-info type3" data-container="product-grid">
+              <div class="product photo product-item-photo">
+                <a href="{{ product.get_absolute_url }}"
+                  tabindex="-1">
+                  <img class="product-image-photo default_image porto-lazyload porto-lazyload-loaded"
+                    data-src="{{ product.image.url }}"
+                    width="350" height="350" alt=""
+                    src="{{ product.image.url }}"
+                    style="display: block;">
+                </a>
+                <div class="product-item-inner">
+                  <div class="product actions product-item-actions">
+                    <div class="actions-primary">
+                      <a href="{{ product.get_absolute_url }}">
+                        <button type="button"
+                          title="Add to Cart" class="action tocart primary">
                           <span>Add to Cart</span>
-                        </a>
-                        <a href="{% url 'cart:wish_remove' product.id %}" class="action towishlist actions-secondary" title="Remove form Wishlist"
-                          aria-label="Add to Wish List"
-                          data-action="remove-from-wishlist" role="button">
-                          <span>Remove from wishlist</span>
-                        </a>
-                      </div>
+                        </button>
+                      </a>
                     </div>
-                    <!-- Dailydeal Product data -->
-                    <!-- Dailydeal Product End -->
-                    <a class="weltpixel-quickview weltpixel_quickview_button_v2"
-                      href="{{ product.get_absolute_url }}"><span><em class="porto-icon-eye"></em><span>View Detail</span></span></a>
+                    <a href="{% url 'cart:wish_remove' product.id %}" class="action towishlist actions-secondary" title="Add to Wish List"
+                      aria-label="Add to Wish List"
+                      data-action="add-to-wishlist" role="button">
+                      <span>Remove from WishList</span>
+                    </a>
+                    <a href="{% url 'cart:wish_remove' product.id %}" class="action tocompare actions-secondary" title="Add to Wish List"
+                      aria-label="Add to Compare"
+                      role="button">
+                      <span>Remove from Wishlist</span>
+                    </a>
                   </div>
-                  <div class="product details product-item-details">
-                    <strong class="product name product-item-name">
-                      <a class="product-item-link"
-                        href="{{ product.get_absolute_url }}">
-                        {{ product.name }} </a>
-                    </strong>
-                    <div class="product-reviews-summary short">
-                      <div class="rating-summary">
-                        <span class="label"><span>Rating:</span></span>
-                        <div class="rating-result" title="0%">
-                          <span style="width:0"><span>0%</span></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
-                      data-price-box="product-id-3382">
-                      <span class="price-container price-final_price tax weee">
-                        <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
-                          class="price-wrapper "><span class="price">Ksh. {{product.price|intcomma }}</span></span>
-                      </span>
+                </div>
+                <!-- Dailydeal Product data -->
+                <!-- Dailydeal Product End -->
+                <a class="weltpixel-quickview weltpixel_quickview_button_v2"
+                  href="{{ product.get_absolute_url }}"><span><em class="porto-icon-eye"></em><span>View Detail</span></span></a>
+              </div>
+              <div class="product details product-item-details">
+                <strong class="product name product-item-name">
+                  <a class="product-item-link"
+                    href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                </strong>
+                <div class="product-reviews-summary short">
+                  <div class="rating-summary">
+                    <span class="label"><span>Rating:</span></span>
+                    <div class="rating-result" title="100%">
+                      <span style="width:100"><span>100%</span></span>
                     </div>
                   </div>
                 </div>
-              </li>
+
+                <div class="price-box price-final_price" data-role="priceBox" data-product-id="3382"
+                  data-price-box="product-id-3382">
+                 <span class="price-container price-final_price tax weee">
+                    <span id="product-price-3382" data-price-amount="101" data-price-type="finalPrice"
+                      class="price-wrapper "><span class="price">Ksh. {{product.price|intcomma }}</span></span>
+                  </span>
+
+                </div>
+              </div>
+            </div>
+          </li>
             {% endwith %}
             {% endfor %}
             </ol>

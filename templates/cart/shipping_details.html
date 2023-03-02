@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-1.html" %}
 {% load crispy_forms_tags %}
 {% load humanize %}
 {% load static %}
@@ -54,13 +54,13 @@ Your shopping cart
                             <h5>Total</h5>
                             <h5>Ksh. {{ cart_wish.get_total_price |intcomma}}</h5>
                         </div>
-                        <button type="submit" class="btn btn-block btn-success font-weight-bold my-3 py-3 rounded">
+                        <button type="submit" class="btn btn-block btn-success font-weight-bold mt-3 py-3 rounded w-100">
                             <i class="fas fa-wallet    "></i>
                             Place Order
                         </button>
-                        <a href="{% url 'shop:product_list' %}"
-                            class="btn btn-block btn-primary font-weight-bold my-3 py-3 rounded"><i
-                                class="fa fa-shopping-bag" aria-hidden="true"></i> Continue shopping</a>
+                        <a href="{% url 'shop:product_list' %}">
+                            <button type="submit" class="btn btn-block btn-success font-weight-bold mt-3 py-3 rounded w-100"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Continue shopping</button>
+                        </a>
                     </div>
 
                 </div>
@@ -72,5 +72,4 @@ Your shopping cart
     </form>
 </div>
 <!-- Cart End -->
-{% include 'bottom.html' %}
 {% endblock %}

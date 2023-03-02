@@ -20,65 +20,7 @@
     }
 </script>
     </div>
-    <script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/section-config":{"sections":{"stores\/store\/switch":"*","stores\/store\/switchrequest":"*","directory\/currency\/switch":"*","*":["messages"],"customer\/account\/logout":["recently_viewed_product","recently_compared_product"],"customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/account\/editpost":"*","customer\/ajax\/login":["checkout-data","cart","captcha"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart"],"checkout\/cart\/delete":["cart"],"checkout\/cart\/updatepost":["cart"],"checkout\/cart\/updateitemoptions":["cart"],"checkout\/cart\/couponpost":["cart"],"checkout\/cart\/estimatepost":["cart"],"checkout\/cart\/estimateupdatepost":["cart"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","checkout-fields"],"checkout\/sidebar\/removeitem":["cart"],"checkout\/sidebar\/updateitemqty":["cart"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","checkout-data","last-ordered-items","instant-purchase"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase"],"customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"multishipping\/checkout\/overviewpost":["cart"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"paypal\/express\/onauthorization":["cart","checkout-data"],"persistent\/index\/unsetcookie":["persistent"],"review\/product\/post":["review"],"braintree\/paypal\/placeorder":["cart","checkout-data"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"weltpixel_quickview\/index\/updatecart":["cart"]},"clientSideSections":["checkout-data","cart-data"],"baseUrls":["https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/"]}}}</script>
-    <script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/customer-data":{"sectionLoadUrl":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/section\/load\/","expirableSectionLifetime":60,"expirableSectionNames":["cart","persistent"],"cookieLifeTime":"3600","updateSessionUrl":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/customer\/account\/updateSession\/"}}}</script>
-    <script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/invalidation-processor":{"invalidationRules":{"website-rule":{"Magento_Customer\/js\/invalidation-rules\/website-rule":{"scopeConfig":{"websiteId":1}}}}}}}</script>
-    <script type="text/x-magento-init">
-{
-    "body": {
-        "pageCache": {"url":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/page_cache\/block\/render\/","handles":["default","checkout_cart_index"],"originalRequest":{"route":"checkout","controller":"cart","action":"index","uri":"\/magento2\/porto\/demo3_en\/checkout\/cart\/"},"versionCookieName":"private_content_version"}        }
-}
-</script>
 
-    <script data-role="msrp-popup-template" type="text/x-magento-template">
-<div id="map-popup-click-for-price" class="map-popup">
-    <div class="popup-header">
-        <strong class="title" id="map-popup-heading-price"></strong>
-    </div>
-    <div class="popup-content">
-        <div class="map-info-price" id="map-popup-content">
-            <div class="price-box">
-                <div class="map-msrp" id="map-popup-msrp-box">
-                    <span class="label">Price</span>
-                    <span class="old-price map-old-price" id="map-popup-msrp">
-                        <span class="price"></span>
-                    </span>
-                </div>
-                <div class="map-price" id="map-popup-price-box">
-                    <span class="label">Actual Price</span>
-                    <span id="map-popup-price" class="actual-price"></span>
-                </div>
-            </div>
-            <form action="" method="POST" class="map-form-addtocart">
-                <input type="hidden" name="product" class="product_id" value="" />
-                <button type="button"
-                        title="Add to Cart"
-                        class="action tocart primary">
-                    <span>Add to Cart</span>
-                </button>
-                <div class="additional-addtocart-box">
-                                        </div>
-            </form>
-        </div>
-        <div class="map-text" id="map-popup-text">
-            Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
-    </div>
-</div>
-</script>
-    <script data-role="msrp-info-template" type="text/x-magento-template">
-<div id="map-popup-what-this" class="map-popup">
-    <div class="popup-header">
-        <strong class="title" id="map-popup-heading-what-this"></strong>
-    </div>
-    <div class="popup-content">
-        <div class="map-help-text" id="map-popup-text-what-this">
-            Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
-    </div>
-</div>
-</script>
     <div class="page-title-wrapper">
       <h1 class="page-title">
         <span class="base" data-ui-id="page-title-wrapper">Shopping Cart</span>
@@ -197,6 +139,7 @@
 
                   </span>
                 </td>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
                 <td class="col qty" data-th="Qty">
                   <div class="field qty">
                     <label class="label" for="cart-46931-qty">
@@ -206,13 +149,19 @@
                       {{ item.update_quantity_form.quantity }}
                       {{ item.update_quantity_form.override }}
                     </div>
-                    <div class="qty-changer">
+                    <!-- <div class="qty-changer">
                       <a href="javascript:void(0)" class="qty-inc"><i class="porto-icon-up-dir"></i></a>
                       <a href="javascript:void(0)" class="qty-dec"><i class="porto-icon-down-dir"></i></a>
+                    </div> -->
+                    {% csrf_token %}
+                    <div class="actions-toolbar">
+                    <button style="margin-top: 20px;" type="submit" class="action action-edit" title="Edit item parameters">
+                      <span>Edit</span>
+                    </button>
                     </div>
                   </div>
                 </td>
-
+                </form>
                 <td class="col subtotal" data-th="Subtotal">
 
                   <span class="price-excluding-tax" data-label="Excl. Tax">
@@ -225,11 +174,12 @@
               <tr class="item-actions">
                 <td colspan="100">
                   <div class="actions-toolbar">
-                    <a class="action action-edit"
+                    <a class="action"
                       href=""
                       title="Edit item parameters">
-                      <span>Edit</span>
+                      <span></span>
                     </a>
+                    
                     <form action="{% url 'cart:cart_remove' product.id %}" method="post">
                       {% csrf_token %}
                       <button title="Remove" class="action action-delete">
@@ -246,7 +196,7 @@
           </table>
         </div>
         <div class="cart main actions">
-          <a class="action continue" href="https://www.portotheme.com/magento2/porto/demo3_en/"
+          <a class="action continue" href="/"
             title="Continue Shopping">
             <span>Continue Shopping</span>
           </a>
@@ -258,7 +208,6 @@
             title="Update Cart" class="action update">
             <span>Update Cart</span>
           </button>
-          <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update="">
         </div>
       </form>
       <div id="gift-options-cart" data-bind="scope:'giftOptionsCart'">

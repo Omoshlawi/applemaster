@@ -1,12 +1,12 @@
-{% extends "base.html" %}
+{% extends "base-1.html" %}
 {% load static %}
 {% load humanize %}
 {% block title %}
-history
+Order history
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row text-center" style="background-color: #6c757d;;">
+<div class="container mb-5">
+    <div class="row text-center">
         <h1>
             Orders History
         </h1>
@@ -55,8 +55,7 @@ history
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{% url 'order:order_invoice' order.id %}" title="Invoice"><i
-                                            class="fas fa-file-invoice    "></i></a>
+                                    <a href="{% url 'order:order_invoice' order.id %}" title="Invoice">pdf</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -74,7 +73,4 @@ history
 
 </div>
 
-
-
-{% include 'bottom.html' %}
 {% endblock %}

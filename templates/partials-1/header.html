@@ -123,6 +123,12 @@
                       <div class="open-children-toggle"></div>
                       <a href="{% url 'shop:product_list' %}" class="level-top"><span>Shop</span></a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="ui-menu-item level0">
+                      <div class="open-children-toggle"></div>
+                      <a href="{% url 'order:order_history' %}" class="level-top"><span>Order History</span></a>
+                    </li>
+                    {% endif %}
                   </ul>
                   </ul>
                 </nav>
