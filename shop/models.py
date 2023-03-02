@@ -44,6 +44,7 @@ def tag_file_name(instance, filename):
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True, db_index=True)
+    updated = models.DateTimeField(auto_now=True)
     image = models.ImageField(
         upload_to=category_file_name,
         blank=True,
@@ -69,6 +70,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     description = models.CharField(max_length=150, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True)
     image = models.ImageField(
         upload_to=tag_file_name,
         blank=False,
@@ -77,7 +79,12 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    def get_absolute_url(self):
+        return reverse(
+            'shop:product_list_by_category',
+            args=[self.slug]
+        )
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)

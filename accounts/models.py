@@ -58,6 +58,8 @@ class Team(models.Model):
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='teams/')
     order = models.SmallIntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     class Meta:
         ordering = ('-order',)
         

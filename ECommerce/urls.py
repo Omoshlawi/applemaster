@@ -17,6 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from shop.sitemaps import ProductSitemap, CategorySitemap, TagSitemap
+
+sitemaps = {
+    'categories': CategorySitemap,
+    'tags': TagSitemap,
+    'products': ProductSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +35,7 @@ urlpatterns = [
     path('', include('root.urls', namespace='root')),
     path('api/', include('api.urls', namespace='api')),
     path('blogs/', include('blogs.urls', namespace='blog')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitempas.views.sitemap'),
     path('accounts/', include('allauth.urls')),
 ]
 
