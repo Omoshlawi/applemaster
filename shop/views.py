@@ -126,7 +126,7 @@ class ProductsView(View):
                 'tag_filter': self.tag_filters,
                 'category_filter': self.category_filter,
                 'sort_by': self.sort_filter,
-                'title': 'Shop' if not self.category else self.category.name
+                'title': 'Apple Master Kenya - Shop Our Wide Selection of Computers and Accessories' if not self.category else self.category.name
             }
         )
 

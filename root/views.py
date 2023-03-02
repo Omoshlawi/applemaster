@@ -74,7 +74,7 @@ def about(request):
     context= {
         'nav': nav, 
         "bread_crumb": bread_crumb,
-        'title': 'About Us',
+        'title': 'About Apple Master Kenya - Your Trusted Provider of Computers and Accessories',
         'teams': Team.objects.all(),
     }
     return render(request, "about-1.html", context)
@@ -92,7 +92,7 @@ def contact(request):
             "form": form, 
             'nav': nav, 
             "bread_crumb": bread_crumb,
-            'title': 'Contact Us',
+            'title': 'Contact Apple Master Kenya - Get in Touch with Us Today',
         }
     )
 
