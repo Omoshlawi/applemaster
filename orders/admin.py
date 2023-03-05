@@ -2,7 +2,8 @@ import csv
 import datetime
 from django.http import HttpResponse
 from django.contrib import admin
-from .models import OrderItem, Order, Payment, PaymentDetails
+from .models import OrderItem, Order
+
 
 # Register your models here.
 def export_to_csv(modeladmin, request, queryset):
@@ -45,14 +46,3 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
     actions = [export_to_csv]
 
-
-class PaymentItemsInline(admin.TabularInline):
-    model = PaymentDetails
-    row_id_field = ["payment"]
-
-
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = ["merchant_request_id", "checkout_request_id", "result_code", "result_description"]
-    list_filter = ["result_code", "result_description"]
-    inlines = [PaymentItemsInline]

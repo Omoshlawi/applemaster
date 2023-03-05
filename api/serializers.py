@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from accounts.models import UserProfile
-from orders.models import Order, OrderItem, Payment, PaymentDetails
+from orders.models import Order, OrderItem
+from payment.models import PaymentDetails, Payment
 from shop.models import Category, Product, Review
 
 

@@ -8,7 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.parsers import JSONParser
-from orders.models import Order, Payment, PaymentDetails
+from orders.models import Order
+from payment.models import Payment, PaymentDetails
 from shop.models import Category, Product, Review
 from .serializers import CategorySerializer, ProductSerializer, ReviewSerializer, AllProductsSerializer, \
     OrderSerializer, PaymentSerializer
