@@ -20,7 +20,7 @@
     {% include 'partials-1/js-head.html' %}
     
     <title>{% block title %}{% endblock %}{% if category %}{{ category }} - {% endif %}{% if title %}{{ title }} -{% endif %} Apple Master Kenya</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}">
+    <link rel="shortcut icon" type="image/png" href="/static/icon.png">
 </head>
 
 <body data-container="body"
@@ -33,20 +33,6 @@ class="cms-porto_home_3 layout-fullwidth wide mobile-sticky cms-index-index page
         {% include 'partials-1/breadcrumbs.html' %}
         <main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
             {% include 'partials-1/message.html' %}
-
-        <script type="text/x-magento-init">
-            {
-                "*": {
-                    "Magento_Ui/js/core/app": {
-                        "components": {
-                                "messages": {
-                                    "component": "Magento_Theme/js/view/messages"
-                                }
-                            }
-                        }
-                    }
-            }
-        </script>
             {% block content %}
 
             {% endblock %}
