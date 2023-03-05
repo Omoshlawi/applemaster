@@ -13,7 +13,8 @@ class TransactionInline(admin.TabularInline):
     ]
     fields = [
         "merchant_request_id", "checkout_request_id",
-        "result_code", "result_description"
+        "result_code", "mpesa_receipt_number",
+        "transaction_date", "phone_number", "amount"
     ]
 
 
