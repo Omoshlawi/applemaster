@@ -30,6 +30,7 @@ class Transaction(models.Model):
     transaction_date = models.CharField(max_length=256, null=True, blank=True)
     phone_number = models.CharField(max_length=13, blank=True, null=True)
     amount = models.DecimalField(max_digits=11, decimal_places=2)
+    created = models.DateTimeField(auto_now=True)
 
 
 @receiver(post_save, sender=Order)

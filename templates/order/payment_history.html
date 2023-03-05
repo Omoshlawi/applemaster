@@ -30,7 +30,7 @@ payment history
                             </tr>
                         </thead>
                         <tbody>
-                            {% for pay in order.payment.all %}
+                            {% for pay in order.payment.transactions.all %}
                             <tr>
                                 <td>
                                     {{forloop.counter}}
@@ -43,13 +43,13 @@ payment history
                                 </td>
 
                                 <td>
-                                    {{pay.items.phone_number}}
+                                    {{pay.phone_number}}
                                 </td>
                                 <td>
-                                    {{pay.items.mpesa_receipt_number}}
+                                    {{pay.mpesa_receipt_number}}
                                 </td>
                                 <td>
-                                    {{pay.items.amount}}
+                                    {{pay.amount}}
                                 </td>
                             </tr>
                             {% endfor %}

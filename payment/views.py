@@ -22,7 +22,7 @@ def order_payment_history(request, order_id):
         BreadCrumb("Shop", reverse('shop:product_list')),
         BreadCrumb("Orders", reverse('order:order_history')),
         BreadCrumb(f"ORD-{order_id}", reverse('order:order_details', args=[order_id])),
-        BreadCrumb(f"Payment history", reverse('order:order_payment_history', args=[order_id]), True),
+        BreadCrumb(f"Payment history", reverse('payment:order_payment_history', args=[order_id]), True),
     ]
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, "order/payment_history.html", {"bread_crumb": bread_crumb, "order": order})
@@ -90,7 +90,7 @@ def create_transaction(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     if order.paid:
         messages.warning(request, f"Order ORD-{order.id} is already paid!")
-        return redirect('order:make_manual_payment')
+        return redirect('payment:make_manual_payment')
     payment = order.payment
     transaction = Transaction(
         payment=payment,
