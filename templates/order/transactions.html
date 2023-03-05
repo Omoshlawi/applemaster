@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-1.html" %}
 {% load static %}
 {% block title %}
 payment history
@@ -9,7 +9,7 @@ payment history
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="row text-center" style="background-color: #6c757d;;">
+    <div class="mt-5 text-center">
         <h1>
             ORD-{{order.id}} Payment History
         </h1>
@@ -67,7 +67,4 @@ payment history
 
 </div>
 
-
-
-{% include 'bottom.html' %}
 {% endblock %}
