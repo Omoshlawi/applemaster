@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from accounts.models import UserProfile
 from orders.models import Order, OrderItem
-from payment.models import PaymentDetails, Payment
+from payment.models import Transaction, Payment
 from shop.models import Category, Product, Review
 
 
@@ -77,7 +77,7 @@ class OrderDetail(serializers.ModelSerializer):
 
 class PaymentDetailedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PaymentDetails
+        model = Transaction
         fields = "__all__"
 
 

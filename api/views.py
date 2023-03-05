@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from orders.models import Order
-from payment.models import Payment, PaymentDetails
+from payment.models import Payment, Transaction
 from shop.models import Category, Product, Review
 from .serializers import CategorySerializer, ProductSerializer, ReviewSerializer, AllProductsSerializer, \
     OrderSerializer, PaymentSerializer
@@ -118,7 +118,7 @@ class MpesaPaymentView(APIView):
         new_payment.save()
         meta = stk_callback.get("CallbackMetadata")
         if meta:
-            payment_detail = PaymentDetails(payment=new_payment, amount=0)
+            payment_detail = Transaction(payment=new_payment, amount=0)
             payment_detail.save()
             for item in meta.get("Item"):
                 if item.get("Name") == 'Amount':

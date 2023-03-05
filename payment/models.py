@@ -9,26 +9,26 @@ from orders.models import Order
 
 
 class Payment(models.Model):
-    order = models.ForeignKey(Order, related_name="payment", on_delete=models.CASCADE)
-    merchant_request_id = models.CharField(max_length=100)
-    checkout_request_id = models.CharField(max_length=100)
-    result_code = models.IntegerField()
-    result_description = models.TextField()
+    order = models.OneToOneField(Order, related_name="payment", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.order}'s Payment"
 
 
-class PaymentDetails(models.Model):
-    payment = models.OneToOneField(Payment, related_name='items', on_delete=models.CASCADE)
+class Transaction(models.Model):
+    payment = models.ForeignKey(Payment, related_name='transactions', on_delete=models.CASCADE)
+    merchant_request_id = models.CharField(max_length=100)
+    checkout_request_id = models.CharField(max_length=100)
+    result_code = models.IntegerField()
+    result_description = models.TextField()
     mpesa_receipt_number = models.CharField(max_length=100, null=True, blank=True)
     transaction_date = models.CharField(max_length=256, null=True, blank=True)
     phone_number = models.CharField(max_length=13, blank=True, null=True)
     amount = models.DecimalField(max_digits=11, decimal_places=2)
 
 
-@receiver(post_save, sender=PaymentDetails)
+@receiver(post_save, sender=Transaction)
 def check_if_payment_complete_and_mark_paid(sender, instance, created, **kwargs):
     if created:
         # update order payment status to true if balance is o

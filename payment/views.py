@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from orders.models import Order
 from orders.payment.payment import MpesaClient
-from payment.models import Payment, PaymentDetails
+from payment.models import Payment, Transaction
 from root.breadcrumb import BreadCrumb
 
 
@@ -99,7 +99,7 @@ def create_transaction(request, order_id):
         result_description=f"Customer paid on delivery by user {request.user}",
     )
     new_payment.save()
-    payment_detail = PaymentDetails(
+    payment_detail = Transaction(
         payment=new_payment,
         amount=order.get_total_cost(),
         mpesa_receipt_number=id_,
