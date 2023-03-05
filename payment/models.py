@@ -43,9 +43,10 @@ def check_if_payment_complete_and_mark_paid(sender, instance, created, **kwargs)
     if created:
         # update order payment status to true if balance is o
         _order = instance.payment.order
+        _payment = _order.payment
         if _order.get_balance() <= 0.95:
-            _order.paid = True
-            _order.save()
+            _payment.completed = True
+            _payment.save()
         else:
-            _order.paid = False
-            _order.save()
+            _payment.completed = False
+            _payment.save()

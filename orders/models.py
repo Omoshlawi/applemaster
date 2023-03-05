@@ -28,7 +28,6 @@ class Order(models.Model):
         ]
 
     def get_amount_paid(self):
-        # return sum(payment.items.amount for payment in Payment.objects.filter(order=self))
         return self.payment.get_amount_paid()
 
     def get_total_cost(self):
