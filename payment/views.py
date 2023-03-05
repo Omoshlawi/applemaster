@@ -22,10 +22,10 @@ def order_payment_history(request, order_id):
         BreadCrumb("Shop", reverse('shop:product_list')),
         BreadCrumb("Orders", reverse('order:order_history')),
         BreadCrumb(f"ORD-{order_id}", reverse('order:order_details', args=[order_id])),
-        BreadCrumb(f"Payment history", reverse('payment:order_payment_history', args=[order_id]), True),
+        BreadCrumb(f"Transactions", reverse('payment:order_payment_history', args=[order_id]), True),
     ]
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, "order/payment_history.html", {"bread_crumb": bread_crumb, "order": order})
+    return render(request, "order/transactions.html", {"bread_crumb": bread_crumb, "order": order})
 
 
 @login_required
