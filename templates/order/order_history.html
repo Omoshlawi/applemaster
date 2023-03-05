@@ -55,7 +55,7 @@ Order history
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{% url 'order:order_invoice' order.id %}" title="Invoice">pdf</a>
+                                    <a href="{% url 'payment:order_invoice' order.id %}" title="Invoice">pdf</a>
                                 </td>
                             </tr>
                             {% endfor %}

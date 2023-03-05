@@ -1,14 +1,14 @@
 import datetime
-import json
 import statistics
-from django.http import HttpRequest
-from django.shortcuts import render
-from rest_framework import generics, parsers, permissions
+
+from django.shortcuts import get_object_or_404
+from rest_framework import generics, permissions
+from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
-from rest_framework.parsers import JSONParser
-from orders.models import Order, Payment, PaymentDetails
+
+from orders.models import Order
+from payment.models import Payment, Transaction
 from shop.models import Category, Product, Review
 from .serializers import CategorySerializer, ProductSerializer, ReviewSerializer, AllProductsSerializer, \
     OrderSerializer, PaymentSerializer
@@ -67,7 +67,7 @@ class CategoryAddView(generics.ListCreateAPIView):
 
 class CategoryAdd(APIView):
     """
-      The base absstract class, you hav to implemnt post, get, put, delete methods
+      The base abstract class, you have to implement post, get, put, delete methods
     """
 
     def post(self, request):
@@ -118,7 +118,7 @@ class MpesaPaymentView(APIView):
         new_payment.save()
         meta = stk_callback.get("CallbackMetadata")
         if meta:
-            payment_detail = PaymentDetails(payment=new_payment, amount=0)
+            payment_detail = Transaction(payment=new_payment, amount=0)
             payment_detail.save()
             for item in meta.get("Item"):
                 if item.get("Name") == 'Amount':

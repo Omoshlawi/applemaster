@@ -86,7 +86,7 @@ Details
             </div>
                 {% if not order.paid %}
                 <div class="card rounded card-body mb-2">
-                    <form action="{% url 'order:create_transaction' order.id %}" method="post">
+                    <form action="{% url 'payment:create_transaction' order.id %}" method="post">
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <input type="text" name="transaction_id" class="form-control" placeholder="Transaction Id or National Id" aria-label="Recipient's username" aria-describedby="basic-addon2" required>

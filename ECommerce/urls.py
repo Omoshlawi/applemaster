@@ -32,6 +32,7 @@ urlpatterns = [
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('order/', include('orders.urls', namespace='order')),
+    path('payment/', include('payment.urls', namespace='payment')),
     path('', include('root.urls', namespace='root')),
     path('api/', include('api.urls', namespace='api')),
     path('blogs/', include('blogs.urls', namespace='blog')),
