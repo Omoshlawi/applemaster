@@ -40,9 +40,9 @@ class OrderItemInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'paid',
+    list_display = ['user',
                     'created', 'updated']
-    list_filter = ['paid', 'created', 'updated']
+    list_filter = ['created', 'updated']
     inlines = [OrderItemInline]
     actions = [export_to_csv]
 

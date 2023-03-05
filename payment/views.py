@@ -92,15 +92,17 @@ def create_transaction(request, order_id):
         messages.warning(request, f"Order ORD-{order.id} is already paid!")
         return redirect('order:make_manual_payment')
     new_payment = Payment(
-        order=order,
-        merchant_request_id=f"ORDRQ-{datetime.now().year}-{order.id}-{id_}",
-        checkout_request_id=f"ORDRP-{datetime.now().year}-{order_id}-{id_}",
-        result_code=0,
-        result_description=f"Customer paid on delivery by user {request.user}",
+        order=order
     )
     new_payment.save()
     payment_detail = Transaction(
         payment=new_payment,
+
+        merchant_request_id=f"ORDRQ-{datetime.now().year}-{order.id}-{id_}",
+        checkout_request_id=f"ORDRP-{datetime.now().year}-{order_id}-{id_}",
+        result_code=0,
+        result_description=f"Customer paid on delivery by user {request.user}",
+
         amount=order.get_total_cost(),
         mpesa_receipt_number=id_,
         transaction_date=str(datetime.now()),

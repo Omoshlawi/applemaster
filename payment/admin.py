@@ -20,6 +20,6 @@ class TransactionInline(admin.TabularInline):
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ["order", "created"]
+    list_display = ["order", "created", "completed"]
     list_filter = ["created"]
     inlines = [TransactionInline]

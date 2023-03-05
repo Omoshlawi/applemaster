@@ -10,7 +10,11 @@ from orders.models import Order
 
 class Payment(models.Model):
     order = models.OneToOneField(Order, related_name="payment", on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    def get_amount_paid(self):
+        return sum([transaction.amount for transaction in self.transactions.all()])
 
     def __str__(self):
         return f"{self.order}'s Payment"
@@ -26,6 +30,12 @@ class Transaction(models.Model):
     transaction_date = models.CharField(max_length=256, null=True, blank=True)
     phone_number = models.CharField(max_length=13, blank=True, null=True)
     amount = models.DecimalField(max_digits=11, decimal_places=2)
+
+
+@receiver(post_save, sender=Order)
+def create_payment(sender, instance, created, **kwargs):
+    if created:
+        Payment.objects.create(order=instance)
 
 
 @receiver(post_save, sender=Transaction)
