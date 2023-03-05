@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'root.apps.RootConfig',
     'api.apps.ApiConfig',
+    'payment.apps.PaymentConfig',
 
     #Third Party Apps
     'allauth',
