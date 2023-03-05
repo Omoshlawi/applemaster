@@ -76,19 +76,19 @@
                     </div>
                     {% if not order.paid %}
                    
-		    <a href="{% url 'order:make_payment' order.id %}"
+		    <a href="{% url 'payment:make_payment' order.id %}"
                         class="d-none btn btn-block btn-success font-weight-bold my-3 py-3"><i class="fa fa-credit-card"
                             aria-hidden="true"></i> Make
                         Payment</a>
                     {% endif %}
-                    <a href="{% url 'order:order_invoice' order.id %}">
+                    <a href="{% url 'payment:order_invoice' order.id %}">
                         <button  class="btn btn-block btn-primary font-weight-bold my-3 py-3 w-100">
                          <i class="fas fa-file-invoice" aria-hidden="true"></i> Invoice
                         </button>
                         </a>
                     </div>
                     {% if order.get_amount_paid %}
-                    <a href="{% url 'order:order_payment_history' order.id %}">
+                    <a href="{% url 'payment:order_payment_history' order.id %}">
                         <button class="btn btn-block btn-secondary font-weight-bold my-3 py-3">
                             <i class="fas fa-file-invoice" aria-hidden="true"></i> View Payment History
                         </button>

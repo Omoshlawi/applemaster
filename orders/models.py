@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 from shop.models import Product
+
+
 # Create your models here.
 
 
@@ -22,7 +23,8 @@ class Order(models.Model):
         ]
 
     def get_amount_paid(self):
-        return sum(payment.items.amount for payment in Payment.objects.filter(order=self))
+        # return sum(payment.items.amount for payment in Payment.objects.filter(order=self))
+        return 0
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())

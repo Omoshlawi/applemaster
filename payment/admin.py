@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from payment.models import Payment, PaymentDetails
+from .models import Payment, PaymentDetails
 
 
 # Register your models here.
