@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#hmpu%%$e73h0x()bsjg-pmf2l980eqlasggfe*4*#fi_g=x4x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -120,7 +120,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'applemaster',
+            'NAME': 'applemasternew',
             'USER': 'applemaster',
             'PASSWORD': 'Lawiomosh3Lawiomosh3',
             'HOST': 'localhost',
