@@ -117,16 +117,29 @@ if DEBUG:
         }
     }
 else:
-    DATABASES = {
+     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'applemasternew',
-            'USER': 'applemaster',
-            'PASSWORD': 'Lawiomosh3Lawiomosh3',
-            'HOST': 'localhost',
-            'PORT': '',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'applemaster',
+            'USER': 'vstech_admin',
+            'PASSWORD': 'Jeff1234',
+            'HOST': 'ap-main.postgres.database.azure.com',
+            'PORT': '5432',
+            'OPTIONS': {
+                'sslmode': 'require',
+            }
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'applemasternew',
+    #         'USER': 'applemaster',
+    #         'PASSWORD': 'Lawiomosh3Lawiomosh3',
+    #         'HOST': 'localhost',
+    #         'PORT': '',
+    #     }
+    # }
 
 SITE_ID = 1
 # Password validation
