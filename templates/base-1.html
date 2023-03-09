@@ -27,9 +27,7 @@
     {% endblock %}
     {% include 'partials-1/css.html' %}
     {% include 'partials-1/js-head.html' %}
-
     <title>{% block title %}{% endblock %}{% if category %}{{ category }} - {% endif %}{% if title %}{{ title }} -{% endif %} Apple Master Kenya</title>
-    <link rel="shortcut icon" type="image/png" href="/static/icon.png">
 </head>
 
 <body data-container="body"
@@ -49,6 +47,44 @@
         {% include 'partials-1/footer.html' %}
         {% block scripts %}
         {% endblock %}
+        <script>
+            var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?42866';
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var options = {
+                "enabled": true,
+                "chatButtonSetting": {
+                    "backgroundColor": "#23a455",
+                    "ctaText": "Message Us",
+                    "borderRadius": "25",
+                    "marginLeft": "0",
+                    "marginBottom": "50",
+                    "marginRight": "50",
+                    "position": "left"
+                },
+                "brandSetting": {
+                    "brandName": "Apple Master Kenya",
+                    "brandSubTitle": "Leading Provider of Computers & Accessories",
+                    "brandImg": "https://www.new.applemaster.co.ke/static/icon.png",
+                    "welcomeText": "Apple Masters, Inc.an online platform for electronics sales.",
+                    "messageText": "{{page_title}} %0A %0AHello, I have a question about {{page_link}}",
+                    "backgroundColor": "#23a455",
+                    "ctaText": "Start Chat",
+                    "borderRadius": "25",
+                    "autoShow": false,
+                    "phoneNumber": "254790616889"
+                }
+            };
+            s.onload = function () {
+                CreateWhatsappChatWidget(options);
+            };
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        </script>
+        <script src='//fw-cdn.com/2639186/3079828.js' chat='true'>
+        </script>
     </div>
 </body>
 
