@@ -28,7 +28,7 @@ sitemaps = {
 
 urlpatterns = [
     path('', include('root.urls', namespace='root')),
-    path('admin/', admin.site.urls),
+    path('a-p/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('api/', include('api.urls', namespace='api')),
