@@ -28,7 +28,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'applemaster.co.ke',
     'www.applemaster.co.ke',
-    '172.173.222.196',
+    'new.applemaster.co.ke',
+    'www.new.applemaster.co.ke',
+
 ]
 
 ADMINS = [
