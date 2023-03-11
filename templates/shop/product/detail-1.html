@@ -325,9 +325,9 @@
                 "
                 src="{{ product.image.url }}"
               />
-              <div class="row">
+              <div class="row pt-3">
               {% for sec_image in product.secondary_images.all %}
-                    <div class="w-25 pt-3">
+                    <div class="w-25 p-1">
                         <img class="img-fluid" src="{{sec_image.image.url}}" alt="Image">
                     </div>
                     {% endfor %}
