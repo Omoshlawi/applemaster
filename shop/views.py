@@ -118,8 +118,8 @@ class ProductsView(View):
             'shop/product/list-1.html',
             {
                 'category': self.category,
-                # 'products': self.products,
-                'products': self.page,
+                'products': self.products,
+                # 'products': self.page,
                 'nav': self.nav,
                 'bread_crumb': self.breadCrumb,
                 'tags': self.tags,
