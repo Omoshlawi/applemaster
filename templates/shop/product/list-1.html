@@ -42,52 +42,6 @@
             "requireCookie": {"noCookieUrl":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/cookie\/index\/noCookies\/","triggers":[".action.towishlist"]}        }
     }
 </script>
-        <script data-role="msrp-popup-template" type="text/x-magento-template">
-    <div id="map-popup-click-for-price" class="map-popup">
-        <div class="popup-header">
-            <strong class="title" id="map-popup-heading-price"></strong>
-        </div>
-        <div class="popup-content">
-            <div class="map-info-price" id="map-popup-content">
-                <div class="price-box">
-                    <div class="map-msrp" id="map-popup-msrp-box">
-                        <span class="label">Price</span>
-                        <span class="old-price map-old-price" id="map-popup-msrp">
-                            <span class="price"></span>
-                        </span>
-                    </div>
-                    <div class="map-price" id="map-popup-price-box">
-                        <span class="label">Actual Price</span>
-                        <span id="map-popup-price" class="actual-price"></span>
-                    </div>
-                </div>
-                <form action="" method="POST" class="map-form-addtocart">
-                    <input type="hidden" name="product" class="product_id" value="" />
-                    <button type="button"
-                            title="Add to Cart"
-                            class="action tocart primary">
-                        <span>Add to Cart</span>
-                    </button>
-                    <div class="additional-addtocart-box">
-                                            </div>
-                </form>
-            </div>
-            <div class="map-text" id="map-popup-text">
-                Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
-        </div>
-    </div>
-    </script>
-        <script data-role="msrp-info-template" type="text/x-magento-template">
-    <div id="map-popup-what-this" class="map-popup">
-        <div class="popup-header">
-            <strong class="title" id="map-popup-heading-what-this"></strong>
-        </div>
-        <div class="popup-content">
-            <div class="map-help-text" id="map-popup-text-what-this">
-                Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
-        </div>
-    </div>
-    </script>
 
         <div id="layer-product-list">
             <div class="toolbar toolbar-products"
@@ -127,18 +81,11 @@
                 </div>
 
                 <p class="toolbar-amount" id="toolbar-amount">
-                    <span class="toolbar-number">14</span> items
+                    <span class="toolbar-number">{{ products.all|length }}</span> items
                 </p>
-
-
-
-
                 <div class="pages">
                     <strong class="label pages-label" id="paging-label">Page</strong>
                     <ul class="items pages-items" aria-labelledby="paging-label">
-
-
-
                         <li class="item current">
                             <strong class="page">
                                 <span class="label">You&#039;re currently reading page</span>
@@ -146,16 +93,13 @@
                             </strong>
                         </li>
                         <li class="item">
-                            <a href="fashion905b.html?p=2" class="page">
+                            <a href="" class="page">
                                 <span class="label">Page</span>
                                 <span>2</span>
                             </a>
                         </li>
-
-
-
                         <li class="item pages-item-next">
-                            <a class="action  next" href="fashion905b.html?p=2" title="Next">
+                            <a class="action  next" href="" title="Next">
                                 <span class="label">Page</span>
                                 <span>Next</span>
                             </a>
@@ -302,15 +246,12 @@
                 </div>
 
                 <p class="toolbar-amount" id="toolbar-amount">
-                    <span class="toolbar-number">14</span> items
+                    <span class="toolbar-number">{{ products.all|length }}</span> items
                 </p>
 
                 <div class="pages">
                     <strong class="label pages-label" id="paging-label">Page</strong>
                     <ul class="items pages-items" aria-labelledby="paging-label">
-
-
-
                         <li class="item current">
                             <strong class="page">
                                 <span class="label">You&#039;re currently reading page</span>
@@ -318,16 +259,13 @@
                             </strong>
                         </li>
                         <li class="item">
-                            <a href="fashion905b.html?p=2" class="page">
+                            <a href="" class="page">
                                 <span class="label">Page</span>
                                 <span>2</span>
                             </a>
                         </li>
-
-
-
                         <li class="item pages-item-next">
-                            <a class="action  next" href="fashion905b.html?p=2" title="Next">
+                            <a class="action  next" href="" title="Next">
                                 <span class="label">Page</span>
                                 <span>Next</span>
                             </a>
@@ -382,531 +320,6 @@
                     $('.main .products.grid .product-items li.product-item:nth-child(8n+1)').addClass('nth-child-8np1');
                 });
             </script>
-            <script type="text/javascript">
-                require([
-                    'jquery'
-                ], function ($) {
-                    var app = {
-                        isAppleDevice: function () {
-                            if (navigator.userAgent.match(/(iPhone|iPod|iPad|Safari)/) != null) {
-                                return true;
-                            }
-                            return false;
-                        }
-                    }
-                    // Timer for LEFT time for Dailydeal product
-                    var _second = 1000;
-                    var _minute = _second * 60;
-                    var _hour = _minute * 60;
-                    var _day = _hour * 24;
-                    var timer;
-
-                    //Set date as magentodatetime
-                    var date = new Date('2023-02-18 20:45:44');
-                    if (app.isAppleDevice()) {
-                        var mdate = '2023-02-18 20:45:44';
-                        var dateParts = mdate.substring(0, 10).split('-');
-                        var timePart = mdate.substr(11);
-                        date = dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
-                        date = new Date(date);
-                    }
-                    var l_date = new Date();
-                    var offset_date = l_date - date;
-
-                    function showRemaining() {
-                        $(".sw-dailydeal-wrapper").each(function () {
-                            var unique_id = $(this).attr("data-unique-id");
-                            // get Value of dailydeal product
-                            var cid = 'countdown_' + unique_id;
-                            var daysid = 'countdown_days_' + unique_id;
-                            var hoursid = 'countdown_hours_' + unique_id;
-                            var minutesid = 'countdown_minutes_' + unique_id;
-                            var secondsid = 'countdown_seconds_' + unique_id;
-
-                            var startdateid = 'fromdate_' + unique_id;
-                            var id = 'todate_' + unique_id;
-
-                            var enddate = new Date($('#' + id).val());
-                            var dealstartdate = new Date($('#' + startdateid).val());
-                            if (app.isAppleDevice() && $('#' + id).val() && $('#' + startdateid).val()) {
-                                var ledate = $('#' + id).val();
-                                var ledateParts = ledate.substring(0, 10).split('-');
-                                var letimePart = ledate.substr(11);
-                                enddate = ledateParts[1] + '/' + ledateParts[2] + '/' + ledateParts[0] + ' ' + letimePart;
-                                enddate = new Date(enddate).getTime();
-
-                                var lsdate = $('#' + startdateid).val();
-                                var lsdateParts = lsdate.substring(0, 10).split('-');
-                                var lstimePart = lsdate.substr(11);
-                                dealstartdate = lsdateParts[1] + '/' + lsdateParts[2] + '/' + lsdateParts[0] + ' ' + lstimePart;
-                                dealstartdate = new Date(dealstartdate).getTime();
-                            }
-                            var currentdate = new Date();
-
-                            //Get Difference between Two dates
-                            var distance = enddate - (currentdate - offset_date);
-
-                            $('.sw-dailydeal-wrapper').show();
-
-                            if (distance < 0) {
-                                // clearInterval(timer);
-                                $('#expired_' + unique_id).html("<span style='font-size:25px; color:#000;'>EXPIRED!<span>");
-
-                            } else if (dealstartdate > currentdate) {
-                                $('.countdowncontainer_' + unique_id).hide();
-                                var msg = "<span style='font-size:15px; color:#000;'> Coming Soon..<br>Deal Start at:<br>" + $('#' + startdateid).val() + "<span>";
-                                $('#expired_' + unique_id).html(msg);
-                            } else {
-                                var days = Math.floor(distance / _day);
-                                var hours = Math.floor((distance % _day) / _hour);
-                                var minutes = Math.floor((distance % _hour) / _minute);
-                                var seconds = Math.floor((distance % _minute) / _second);
-
-                                if (hours < 10)
-                                    hours = "0" + hours;
-                                if (minutes < 10)
-                                    minutes = "0" + minutes;
-                                if (seconds < 10)
-                                    seconds = "0" + seconds;
-                                $('.countdowncontainer_' + unique_id).show();
-                                $('#' + daysid).html(days);
-                                $('#' + hoursid).html(hours);
-                                $('#' + minutesid).html(minutes);
-                                $('#' + secondsid).html(seconds);
-                            }
-                        });
-                    }
-
-                    // Set Interval
-                    timer = setInterval(function () {
-                        showRemaining();
-                    }, 1000);
-                });
-            </script>
-        </div>
-    </div>
-    <div class="sidebar sidebar-main mobile-sidebar">
-        <div class="sidebar-content">
-            <div id="layered-filter-block-container" class="layered-filter-block-container">
-                <div class="block filter" id="layered-filter-block"
-                    data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
-
-                    <div id="ln_overlay" class="ln_overlay">
-                        <div class="loader">
-                            <img src="../../../../pub/static/version1627880338/frontend/Smartwave/porto/en_US/images/loader-1.gif"
-                                alt="Loading...">
-                        </div>
-                    </div>
-
-                    <div class="block-title filter-title" data-count="0">
-                        <strong data-role="title">Filter</strong>
-                    </div>
-                    <div class="block-content filter-content"
-                        data-mage-init='{"mpLayer": {"active":["id"],"params":{"id":"459"},"isCustomerLoggedIn":false,"isAjax":true,"slider":{"price":{"selectedFrom":39,"selectedTo":299,"minValue":39,"maxValue":299,"priceFormat":"{\"pattern\":\"$%s\",\"precision\":2,\"requiredPrecision\":2,\"decimalSymbol\":\".\",\"groupSymbol\":\",\",\"groupLength\":3,\"integerRequired\":false}","ajaxUrl":"https:\/\/www.portotheme.com\/magento2\/porto\/demo3_en\/categories\/accessories\/electronics\/fashion.html?price=from-to"}}}}'>
-
-
-                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle">Shopping
-                            Options</strong>
-                        <div class="filter-options" id="narrow-by-list" data-role="content">
-                            <div data-role="ln_collapsible" class="filter-options-item active" attribute="price">
-                                <div data-role="ln_title" class="filter-options-title ">Price<span
-                                        class="toggle"></span></div>
-                                <div data-role="ln_content" class="filter-options-content">
-                                    <ol class="items">
-                                        <li class="item">
-                                            <div id="ln_slider_container_price" class="ln_slider_container">
-                                                <div id="ln_slider_price"></div>
-                                                <div id="ln_slider_text_price"></div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div id="ln_slider_container_price" class="ln_slider_container">
-                                                <div id="ln_slider_price"></div>
-                                                <div id="ln_slider_text_price"></div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div id="ln_slider_container_price" class="ln_slider_container">
-                                                <div id="ln_slider_price"></div>
-                                                <div id="ln_slider_text_price"></div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                            <div data-role="ln_collapsible" class="filter-options-item active" attribute="size">
-                                <div data-role="ln_title" class="filter-options-title ">Size<span class="toggle"></span>
-                                </div>
-                                <div data-role="ln_content" class="filter-options-content">
-                                    <div class="swatch-attribute swatch-layered size" attribute-code="size"
-                                        attribute-id="137">
-                                        <div class="swatch-attribute-options clearfix">
-                                            <a href="fashion98a9.html?size=91" aria-label="55&#x20;cm"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="91" option-label="55&#x20;cm" option-tooltip-thumb=""
-                                                    option-tooltip-value="">55 cm
-                                                </div>
-                                            </a>
-                                            <a href="fashiond490.html?size=167" aria-label="XS"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="167" option-label="XS" option-tooltip-thumb=""
-                                                    option-tooltip-value="">XS</div>
-                                            </a>
-                                            <a href="fashiona51a.html?size=168" aria-label="S"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="168" option-label="S" option-tooltip-thumb=""
-                                                    option-tooltip-value="">S</div>
-                                            </a>
-                                            <a href="fashion0cad.html?size=169" aria-label="M"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="169" option-label="M" option-tooltip-thumb=""
-                                                    option-tooltip-value="">M</div>
-                                            </a>
-                                            <a href="fashion8345.html?size=170" aria-label="L"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="170" option-label="L" option-tooltip-thumb=""
-                                                    option-tooltip-value="">L</div>
-                                            </a>
-                                            <a href="fashion15f8.html?size=171" aria-label="XL"
-                                                class="swatch-option-link-layered">
-                                                <div class="swatch-option text " tabindex="-1" option-type="0"
-                                                    option-id="171" option-label="XL" option-tooltip-thumb=""
-                                                    option-tooltip-value="">XL</div>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <script>
-                                        require(["jquery", "Magento_Swatches/js/swatch-renderer"], function ($) {
-                                            $('.swatch-layered.size')
-                                                .find('[option-type="1"], [option-type="2"], [option-type="0"], [option-type="3"]')
-                                                .SwatchRendererTooltip();
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="side-custom-block">
-                <div class="custom-block">
-                    <h2 class="sidebar-title">Featured</h2>
-                    <div class="block-content">
-                        <div class="sidebar-filterproducts">
-                            <div id="featured_product">
-                                <div class="products wrapper grid small-list products-grid">
-                                    <div
-                                        class="filterproducts products list items product-items owl-carousel mb-0 show-nav-title">
-                                        <div class="item">
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2458/s/porto-extended-camera/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-4.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2458/s/porto-extended-camera/index.html">Porto
-                                                            Extended Camera</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2458" data-price-box="product-id-2458">
-                                                            <span class="normal-price">
-
-
-                                                                <span
-                                                                    class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                    <span class="price-label">As low
-                                                                        as</span>
-                                                                    <span id="product-price-2458"
-                                                                        data-price-amount="599"
-                                                                        data-price-type="finalPrice"
-                                                                        class="price-wrapper "><span
-                                                                            class="price">$599.00</span></span>
-                                                                </span>
-                                                            </span>
-
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2458/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2480/s/digital-camera-16x/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-1_1.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2480/s/digital-camera-16x/index.html">Digital
-                                                            Camera 16x</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2480" data-price-box="product-id-2480">
-                                                            <span class="normal-price">
-
-
-                                                                <span
-                                                                    class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                    <span class="price-label">As low
-                                                                        as</span>
-                                                                    <span id="product-price-2480"
-                                                                        data-price-amount="111"
-                                                                        data-price-type="finalPrice"
-                                                                        class="price-wrapper "><span
-                                                                            class="price">$111.00</span></span>
-                                                                </span>
-                                                            </span>
-
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2480/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2490/s/brown-bag/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-23.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2490/s/brown-bag/index.html">Brown
-                                                            Bag</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2490" data-price-box="product-id-2490">
-
-
-
-                                                            <span
-                                                                class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                <span id="product-price-2490" data-price-amount="299"
-                                                                    data-price-type="finalPrice"
-                                                                    class="price-wrapper "><span
-                                                                        class="price">$299.00</span></span>
-                                                            </span>
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2490/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2482/s/casual-note-bag/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-55_1.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2482/s/casual-note-bag/index.html">Casual
-                                                            Note Bag</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2482" data-price-box="product-id-2482">
-
-
-
-                                                            <span
-                                                                class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                <span id="product-price-2482" data-price-amount="299"
-                                                                    data-price-type="finalPrice"
-                                                                    class="price-wrapper "><span
-                                                                        class="price">$299.00</span></span>
-                                                            </span>
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2482/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2489/s/casual-blue-shoes/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-34.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2489/s/casual-blue-shoes/index.html">Casual
-                                                            Blue Shoes</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2489" data-price-box="product-id-2489">
-                                                            <span class="normal-price">
-
-
-                                                                <span
-                                                                    class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                    <span class="price-label">As low
-                                                                        as</span>
-                                                                    <span id="product-price-2489"
-                                                                        data-price-amount="101"
-                                                                        data-price-type="finalPrice"
-                                                                        class="price-wrapper "><span
-                                                                            class="price">$101.00</span></span>
-                                                                </span>
-                                                            </span>
-
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2489/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product product-item">
-                                                <div class="product-item-info" data-container="product-grid">
-                                                    <a href="../../../catalog/product/view/id/2503/s/black-ears/index.html"
-                                                        class="product photo product-item-photo" tabindex="-1">
-                                                        <img class="product-image-photo default_image porto-lazyload"
-                                                            data-src="https://www.portotheme.com/magento2/porto/pub/media/catalog/product/cache/f03afad59006a87cc20cdc6ad4e77703/p/r/product-18_1.jpg"
-                                                            width="150" height="150" alt="" />
-                                                    </a>
-                                                    <div class="product details product-item-details">
-                                                        <a
-                                                            href="../../../catalog/product/view/id/2503/s/black-ears/index.html">Black
-                                                            Ears</a>
-                                                        <div class="product-reviews-summary short">
-                                                            <div class="rating-summary">
-                                                                <span class="label"><span>Rating:</span></span>
-                                                                <div class="rating-result" title="0%">
-                                                                    <span style="width:0"><span>0%</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="price-box price-final_price" data-role="priceBox"
-                                                            data-product-id="2503" data-price-box="product-id-2503">
-
-
-
-                                                            <span
-                                                                class="price-container price-final_price&#x20;tax&#x20;weee">
-                                                                <span id="product-price-2503" data-price-amount="101"
-                                                                    data-price-type="finalPrice"
-                                                                    class="price-wrapper "><span
-                                                                        class="price">$101.00</span></span>
-                                                            </span>
-
-                                                        </div> <a
-                                                            class="weltpixel-quickview weltpixel_quickview_button_v2"
-                                                            data-quickview-url=https://www.portotheme.com/magento2/porto/demo3_en/weltpixel_quickview/catalog_product/view/id/2503/
-                                                            href="javascript:void(0);"><span><em
-                                                                    class="porto-icon-eye"></em><span>Quickview</span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/x-magento-init">
-        {
-            "[data-role=tocart-form], .form.map.checkout": {
-                "catalogAddToCart": {}
-            }
-        }
-        </script>
-
-                            </div>
-                            <script type="text/javascript">
-                                require([
-                                    'jquery',
-                                    'owl.carousel/owl.carousel.min'
-                                ], function ($) {
-                                    $("#featured_product .owl-carousel").owlCarousel({
-                                        loop: false,
-                                        items: 1,
-                                        nav: true,
-                                        dots: false
-                                    });
-                                });
-                            </script>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-block">
-                    <h2>Custom HTML Block</h2>
-                    <div class="block-content">
-                        <h5 style="margin-top: -10px; margin-bottom: 20px; color: #777">This is a custom
-                            sub-title.</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non
-                            placerat mi. Etiam non tellus </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
