@@ -88,6 +88,13 @@ def contact(request):
     ]
     nav = {"contact": 'active'}
     form = ContactForm()
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your message has been sent. We will get back to you shortly")
+            return redirect('root:index')
+
     return render(request, "contact-1.html", 
         {
             "form": form, 

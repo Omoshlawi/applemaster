@@ -81,3 +81,16 @@ class SubSubscribers(models.Model):
         verbose_name = 'Subscriber'
         verbose_name_plural = 'Subscribers'
 
+class Contact(models.Model):
+    name = models.CharField(max_length=158)
+    email = models.EmailField(max_length=254)
+    subject = models.CharField(max_length=158)
+    message = models.TextField()
+    is_addressed = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('-created',)

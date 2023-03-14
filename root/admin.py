@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactInfo, FrontDisplayCategory, FrontDisplay, SubSubscribers
+from .models import ContactInfo, FrontDisplayCategory, FrontDisplay, SubSubscribers, Contact
 # Register your models here.
 
 @admin.register(ContactInfo)
@@ -28,3 +28,12 @@ class SubSubscribersAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     ordering = ('-created',)
     list_editable = ('is_subscribed',)
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'message','is_addressed', 'created')
+    list_filter = ('created','is_addressed')
+    search_fields = ('name', 'email', 'subject', 'message')
+    date_hierarchy = 'created'
+    ordering = ('-created',)
+    readonly_fields = ('name', 'email', 'subject', 'message')
